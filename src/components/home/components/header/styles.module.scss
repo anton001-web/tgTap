@@ -1,0 +1,63 @@
+.header {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    gap: 10px;
+}
+
+.headerToken {
+    width: 40px;
+    height: 40px;
+}
+
+.headerTitle {
+    font-family: 'SFPRO';
+    font-weight: 700;
+    color: #F0F0E6;
+    font-size: 40px;
+}
+
+.headerGroup {
+    gap: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.headerTopWrap {
+    display: flex;
+    gap: 10px;
+}
+
+.headerTopBlock {
+    background: #207041A6;
+    padding: 5px 10px;
+    box-sizing: border-box;
+    font-family: 'SFPRO';
+    height: 30px;
+    font-size: 16px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #F0F0E6;
+}
+
+.headerSendBlock {
+    border-radius: 14px;
+    background: #207041A6;
+    padding: 5px 10px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+
+}
+
+.headerSend {
+    min-width: 17px;
+    height: 20px;
+}

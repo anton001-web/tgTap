@@ -1,0 +1,45 @@
+.claimBLock {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 75px;
+    background: #DE0607;
+    border-radius: 15px;
+    box-shadow: 0px 0px 15px 1px #DE0607;
+    position: relative;
+}
+
+.claimTitle {
+    display: flex;
+    align-items: center;
+    font-family: "SFPRO";
+    font-weight: 700;
+    font-size: 20px;
+    color: #fff;
+    gap: 10px;
+}  
+
+.tokenIco {
+    width: 30px;
+    height: 30px;
+}
+
+.copyIco {
+
+    width: 40px;
+    height: 40px;
+}
+
+.copyIcoWrap {
+    box-sizing: border-box;
+    padding: 8px 5px;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(-50%);
+    background: #fff;
+    border-radius: 10px;
+}

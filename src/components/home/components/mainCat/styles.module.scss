@@ -1,0 +1,16 @@
+.MainCatImg {
+    width: 200px;
+    height: 200px;
+
+    @media screen and (min-height: 670px) {
+        height: 100%;
+        width: 80%;
+    }
+}
+
+.MainCatImgWrap {
+    flex: 1;
+    margin-top: -30px;
+    display: flex;
+    justify-content: center;
+}

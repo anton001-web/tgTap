@@ -1,0 +1,56 @@
+@import url('./fonts.scss');
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body.Frens {
+  background: #1E1E1E;
+
+  .footer {
+    z-index: 10;
+    padding: 0 10px 10px 10px;
+  }
+}
+
+body.Main {
+  background: url('../assets/images/mainBg.png');
+  background-size: cover;
+}
+
+html, body {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+#root {
+  height: 100%;
+}
+
+.footer {
+  margin-top: 5px !important;
+  margin: 0 -7px;
+  background: #1E1E1E;
+  padding: 10px;
+  box-sizing: border-box;
+  position: relative;
+
+}
+
+.mainWrap {
+  height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  position: relative;
+}
+
+.frensBgItem {
+  position: absolute;
+  z-index: 0;
+  width: 400px;
+  height: 400px;
+  right: -90px;
+  bottom: 100px;
+}

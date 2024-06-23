@@ -1,0 +1,67 @@
+.PlayBlock {
+    background-image: url("../../../../assets/images/minesPlayBg.png");
+    background-size: cover;
+    height: 160px;
+    background-repeat: no-repeat;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    position: relative;
+    border-radius: 18px;
+}
+
+.Mines {
+    width: 40px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.MinesIco {
+    width: 30px;
+    height: 30px;
+}
+
+.MinesTitle {
+    font-family: 'SFPRO';
+    font-weight: 700;
+    font-size: 16px;
+    color: #F0F0E6;
+}
+
+.MinesGroup {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.MinesIco {
+    width: 25px;
+    height: 25px;
+}
+
+.gamesNum {
+    font-family: 'SFPRO';
+    font-weight: 600;
+    font-size: 16px;
+    color: #F0F0E6;
+}
+
+.GamieBlock {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'SFPRO';
+    font-weight: 600;
+    font-size: 16px;
+    color: #F0F0E6;
+    background: #DE06074D;
+    box-sizing: border-box;
+    padding: 3px 10px;
+
+}

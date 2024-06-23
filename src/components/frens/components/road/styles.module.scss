@@ -1,0 +1,71 @@
+.roadmapWrap {
+    margin-top: 5px;
+    padding: 0 30px;
+    position: relative;
+    z-index: 10;
+    padding-bottom: 90px;
+}
+
+.roadmapItem {
+    position: relative;
+    display: flex;
+    align-items: center;
+    // gap: 5px;
+
+
+    &:nth-child(2) {
+        margin-top: 70px;
+    }
+}
+
+.Arr1 {
+    position: absolute;
+    height: 90px;
+    top: 55px;
+    left: 20px;
+}
+
+.Arr2 {
+    position: absolute;
+    height: 90px;
+    top: 50px;
+    left: -50px;
+}
+
+.roadmapTextGroup {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
+
+    &Second {
+        position: relative;
+        top: 30px;
+    }
+}
+
+.roadmapTitle {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #DE0607;
+    font-family: "SFPRO";
+    font-size: 20px;
+}
+
+.roadmapText {
+    color: #EFEFE5;
+    font-family: "SFPRO";
+    font-size: 18px;
+}
+
+.Cube {
+    min-width: 20px;
+    height: 20px;
+    max-width: 20px;
+}
+
+.Num {
+    width: 60px;
+    height: 60px;
+}

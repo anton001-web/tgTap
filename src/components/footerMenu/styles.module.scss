@@ -1,0 +1,44 @@
+.FooterMenu {
+    margin-top: 10px;
+    height: 75px;
+    background: #F0F0E6;
+    border-radius: 15px;
+    display: flex;
+}
+
+.MenuItem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 5px;
+    text-transform: lowercase;
+    font-size: 16px;
+    color: #1E1E1E;
+    text-decoration: none;
+    width: 100%;
+    font-weight: 700;
+    font-family: "SFPRO";
+    border-radius: 10px;
+
+    &Active {
+        color: #F0F0E6;
+        background: #1E1E1E;
+        box-shadow: 0px 4px 21.2px 0px #000000A6;
+
+        &:nth-child(2), &:nth-child(3) {
+            svg {
+                g {
+                    rect {
+                        fill: #fff;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.Icon {
+    width: 30px;
+    height: 30px;
+}
