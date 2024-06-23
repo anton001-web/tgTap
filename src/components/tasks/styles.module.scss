@@ -1,0 +1,76 @@
+.tasksWrap {
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.tasksHeader {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.tasksTitleBlock {
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: space-between;
+    background: #207041;
+    border-radius: 10px;
+}
+
+.tasksTitleWord {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 15px;
+    background: #F0F0E6;
+    color: #DE0607;
+    border-radius: 10px;
+    font-size: 45px;
+    font-weight: 800;
+}
+
+.availableBlock {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.availableText {
+    color: #F0F0E6;
+    font-family: "SFPRO";
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.availableBorder {
+    margin-top: 10px;
+    background: linear-gradient(to right, #1E1E1E, #D42425, #1E1E1E);
+    width: 100%;
+    height: 2px;
+}
+
+.availableGroup {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-family: "SFPRO";
+    color: #DE0607;
+    text-shadow: 2px 2px #000;
+    font-weight: 700;
+    font-size: 38px;
+
+    span {
+        font-size: 28px;
+        margin-top: 6px;
+    }
+}
+
+.romb {
+    width: 45px;
+    height: 45px;
+}

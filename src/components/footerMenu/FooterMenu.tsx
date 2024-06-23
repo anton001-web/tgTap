@@ -18,6 +18,10 @@ export const FooterMenu:FC<FooterMenuProps> = () => {
             setTab('home')
         } else if (loc.pathname === '/frens') {
             setTab('frens')
+        } else if (loc.pathname === '/referals') {
+            setTab('frens')
+        } else if (loc.pathname === '/tasks') {
+            setTab('tasks')
         }
     }, [loc])
 

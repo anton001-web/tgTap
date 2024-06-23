@@ -21,7 +21,11 @@ body.Main {
 
 html, body {
   height: 100%;
-  overflow-x: hidden;
+  // overflow-x: hidden;
+}
+
+body.Tasks {
+  background: #1E1E1E;
 }
 
 #root {
@@ -53,4 +57,12 @@ html, body {
   height: 400px;
   right: -90px;
   bottom: 100px;
+}
+
+.tasksBgItem {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 40%;
 }

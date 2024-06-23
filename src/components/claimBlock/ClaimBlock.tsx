@@ -1,13 +1,14 @@
 import {FC, useEffect, useState} from 'react'
 import styles from './styles.module.scss'
 import tokenIco  from '../../assets/images/tokenRed.png'
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import CopyIco from '../../assets/images/copyIco.svg?react'
 
 interface ClaimBlockProps {}
 
 export const ClaimBlock:FC<ClaimBlockProps> = () => {
     const [isDisabled, setIsDisabled] = useState(false);
+    const navigate = useNavigate()
     const loc = useLocation()
     const [title, setTitle] = useState('Claim')
 
@@ -39,8 +40,14 @@ export const ClaimBlock:FC<ClaimBlockProps> = () => {
     }
   }, [loc])
 
+  const handler = () => {
+    if(loc.pathname === '/frens') {
+        navigate('/referals')
+    }
+  }
+
     return (
-        <div className={styles.claimBLock}>
+        <div className={styles.claimBLock} onClick={handler} >
             <span className={styles.claimTitle}>
                 {title}
                 {title === 'Claim' && <img className={styles.tokenIco} src={tokenIco} />}

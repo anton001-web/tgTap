@@ -1,0 +1,133 @@
+.dailyWrap {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #1E1E1E;
+    z-index: 888;
+    padding: 50px 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.dailyFooter {
+    position: absolute;
+    bottom: 0;
+    height: 100px;
+    left: 0;
+}
+
+.headerGroup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.dailyTitle {
+    color: #DE0607;
+    font-family: "SFPRO";
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.dailySubtitle {
+    color: #F0F0E6;
+    font-size: 32px;
+    font-family: "SFPRO";
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-top: 20px;
+}
+
+.cat {
+    max-width: 300px;
+    position: relative;
+    z-index: 12;
+
+}
+
+.catWrap {
+    position: relative;
+
+    &::after {
+        z-index: 10;
+        content: '';
+        width: 120px;
+        border-radius: 35%;
+        filter: blur(50px);
+        height: 80%;
+        background: #DE0607;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+    }
+}
+
+.dailyPrize {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.dailyCoins {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+}
+
+.dailyPrizeTitle {
+    font-family: "SFPRO";
+    font-size: 45px;
+    font-weight: 700;
+    color: #F0F0E6;
+}
+
+.tokenIco {
+    width: 50px;
+    height: 50px;
+}
+
+.dailyTickets {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.minesIco {
+    width: 50px;
+    height: 50px;
+}
+
+.border {
+    width: 3px;
+    height: 80px;
+    background: linear-gradient(to bottom, #1E1E1E, #fff, #1E1E1E);
+}
+
+.claimBLock {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 75px;
+    background: #DE0607;
+    border-radius: 15px;
+    box-shadow: 0px 0px 15px 1px #DE0607;
+    width: 100%;
+    position: relative;
+    z-index: 10;
+    font-family: "SFPRO";
+    color: #fff;
+    font-weight: 700;
+    font-size: 20px;
+}
