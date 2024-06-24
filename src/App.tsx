@@ -72,7 +72,7 @@ function App() {
         className='footer'
       >
         {
-          loc.pathname !== '/referals' && <ClaimBlock />
+          loc.pathname !== '/referals' && loc.pathname !== '/tasks' && <ClaimBlock />
         }
         <FooterMenu />
       </div>

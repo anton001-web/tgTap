@@ -1,6 +1,7 @@
 import {FC} from 'react'
 import s from './styles.module.scss'
 import romb from '../../assets/images/tasksRomb.png'
+import { DailyTasks } from './components/DailyTasks'
 
 interface TasksProps {}
 
@@ -24,6 +25,8 @@ export const Tasks:FC<TasksProps> = () => {
                     <div className={s.availableBorder}></div>
                 </div> 
             </div>
+            <DailyTasks variant='red' />
+            <DailyTasks variant='green' />
         </div>
     )
 }
