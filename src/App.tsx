@@ -11,6 +11,7 @@ import { Referals } from './components/referals/Referals';
 import { Daily } from './components/daily/Daily';
 import { Tasks } from './components/tasks/Tasks';
 import TasksBgItem from './assets/images/tasksBgItem.png'
+import { SwiperPage } from './components/swiperPage/SwiperPage';
 
 function App() {
   const loc = useLocation()
@@ -53,6 +54,20 @@ function App() {
       document.body.classList.add('Frens')
       document.body.classList.remove('Main')
       document.body.classList.remove('Tasks')
+    } else if (loc.pathname === '/swiper') {
+      document.body.classList.add('Frens')
+      document.body.classList.remove('Main')
+      document.body.classList.remove('Tasks')
+    }
+  }, [loc])
+
+  useEffect(() => {
+    if(loc.pathname === '/swiper') {
+      document.body.style.overflowY = 'hidden'
+      document.documentElement.style.overflowY = 'hidden'
+    } else {
+      document.body.style.overflowY = 'scroll'
+      document.documentElement.style.overflowY = 'scroll'
     }
   }, [loc])
 
@@ -67,15 +82,20 @@ function App() {
         <Route path='/frens' element={<Frens />} />
         <Route path='/referals' element={<Referals />} />
         <Route path='/tasks' element={<Tasks />} />
+        <Route path='/swiper' element={<SwiperPage />} />
       </Routes>
-      <div
-        className='footer'
-      >
-        {
-          loc.pathname !== '/referals' && loc.pathname !== '/tasks' && <ClaimBlock />
-        }
-        <FooterMenu />
-      </div>
+      {
+        loc.pathname !== '/swiper' && (
+          <div
+            className='footer'
+          >
+            {
+              loc.pathname !== '/referals' && loc.pathname !== '/tasks' && <ClaimBlock />
+            }
+            <FooterMenu />
+          </div>
+        )
+      }
     </div>
   )
 }
