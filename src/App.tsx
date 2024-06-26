@@ -4,7 +4,7 @@ import './styles/App.scss'
 import { ClaimBlock } from './components/claimBlock/ClaimBlock';
 import { FooterMenu } from './components/footerMenu/FooterMenu';
 import { Home } from './components/home/Home';
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { Route, Routes, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { Frens } from './components/frens/Frens';
 import FrensBgItem from './assets/images/frensBgItem.svg?react'
 import { Referals } from './components/referals/Referals';
@@ -12,35 +12,66 @@ import { Daily } from './components/daily/Daily';
 import { Tasks } from './components/tasks/Tasks';
 import TasksBgItem from './assets/images/tasksBgItem.png'
 import { SwiperPage } from './components/swiperPage/SwiperPage';
+import { Mines } from './components/mines/Mines';
+import { TokenContext } from './providers/Auth';
+import { userAuth } from './components/api/api';
+
 
 function App() {
+  const [modalVisibility, setModalVisibility] = useState(false)
   const loc = useLocation()
   const [info, setInfo] = useState<any>()
+  const navigate = useNavigate()
+  const [authData, setAuthData] = useState<any>();
+  const [kentId, setKentId] = useState<string>('')
 
   useEffect(() => {
-
     if (window.Telegram?.WebApp) {
       const initDataUnsafe = window.Telegram.WebApp.initDataUnsafe;
-      const initData = window.Telegram.WebApp.initData;
-      const initDataRaw = window.Telegram.WebApp.initDataRaw;
-      const params = new URLSearchParams(initData);
+      const data = window.Telegram.WebApp.initData;
       window.Telegram.WebApp.expand();
+      
+      const params = new URLSearchParams(data);
+      const startParam = params.get('start_param');
 
-      // const user = params.get('user') ? JSON.parse(params.get('user')) : null;
-      const queryId = params.get('query_id');
+      let parts = startParam?.split("=");
+      parts && setKentId(parts[1].trim())
 
-      setInfo(params)
-    }
+      setInfo(initDataUnsafe.user)
+    } 
 
   }, []);
 
   useEffect(() => {
-    console.log('INFO', window.Telegram.WebApp)
-  }, [info])
+    console.log('KENT', kentId)
+  }, [kentId])
+
+  const authUserF = async () => {
+    const res = await userAuth({
+      tgId: info?.id,
+      tgName: info?.first_name,
+      languageCode: info?.language_code,
+      username: info?.username,
+      isPremium: info?.is_premium,
+      kentId: kentId?.toString(),
+    })
+    setAuthData(res)
+}
+
+  useEffect(() => {
+    const visitedSwiperPage = localStorage.getItem('visitedSwiperPage');
+
+    if(visitedSwiperPage) {
+      if(info?.id) {
+        authUserF()
+      }
+    }
+
+  }, [info, loc])
 
   useEffect(() => {
 
-    if(loc.pathname === '/') {
+    if(loc.pathname === '/home') {
       document.body.classList.add('Main')
       document.body.classList.remove('Frens')
     } else if (loc.pathname === '/frens') {
@@ -54,7 +85,7 @@ function App() {
       document.body.classList.add('Frens')
       document.body.classList.remove('Main')
       document.body.classList.remove('Tasks')
-    } else if (loc.pathname === '/swiper') {
+    } else if (loc.pathname === '/') {
       document.body.classList.add('Frens')
       document.body.classList.remove('Main')
       document.body.classList.remove('Tasks')
@@ -62,7 +93,7 @@ function App() {
   }, [loc])
 
   useEffect(() => {
-    if(loc.pathname === '/swiper') {
+    if(loc.pathname === '/' || loc.pathname === '/mines') {
       document.body.style.overflowY = 'hidden'
       document.documentElement.style.overflowY = 'hidden'
     } else {
@@ -71,32 +102,56 @@ function App() {
     }
   }, [loc])
 
-  return (
-    <div className='mainWrap' style={{padding: '7px'}} >
-      {/* <Daily /> */}
-      {loc.pathname === '/frens' && <FrensBgItem className='frensBgItem' />}
-      {loc.pathname === '/tasks' && <img src={TasksBgItem} className='tasksBgItem' />}
+  useEffect(() => {
+    const visitedSwiperPage = localStorage.getItem('visitedSwiperPage');
+    if (visitedSwiperPage && location.pathname === '/') {
+      navigate('/home');
+    }
+  }, [location, navigate]);
 
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/frens' element={<Frens />} />
-        <Route path='/referals' element={<Referals />} />
-        <Route path='/tasks' element={<Tasks />} />
-        <Route path='/swiper' element={<SwiperPage />} />
-      </Routes>
-      {
-        loc.pathname !== '/swiper' && (
-          <div
-            className='footer'
-          >
-            {
-              loc.pathname !== '/referals' && loc.pathname !== '/tasks' && <ClaimBlock />
-            }
-            <FooterMenu />
-          </div>
-        )
-      }
-    </div>
+  useEffect(() => {
+    console.log('INFO', authData)
+    if(authData.points_to_claim) {
+      
+    }
+  }, [authData])
+
+  const setToken = () => {
+    
+  }
+
+  return (
+
+    <TokenContext.Provider
+      value={{ token: authData?.token, setToken }}
+    >
+      <div className='mainWrap' style={{padding: '7px'}} >
+        <Daily visibility={modalVisibility} setVisibility={setModalVisibility} />
+        {loc.pathname === '/frens' && <FrensBgItem className='frensBgItem' />}
+        {loc.pathname === '/tasks' && <img src={TasksBgItem} className='tasksBgItem' />}
+
+        <Routes>
+          <Route path='/' element={<SwiperPage />} />
+          <Route path='/home' element={<Home />} />
+          <Route path='/frens' element={<Frens />} />
+          <Route path='/referals' element={<Referals />} />
+          <Route path='/tasks' element={<Tasks />} />
+          <Route path='/mines' element={<Mines />} />
+        </Routes>
+        {
+          loc.pathname !== '/' && loc.pathname !== '/mines' &&  (
+            <div
+              className='footer'
+            >
+              {
+                loc.pathname !== '/referals' && loc.pathname !== '/tasks' && loc.pathname !== '/home' && <ClaimBlock />
+              }
+              <FooterMenu />
+            </div>
+          )
+        }
+      </div>
+    </TokenContext.Provider>
   )
 }
 

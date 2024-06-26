@@ -12,6 +12,7 @@ export const ClaimBlock:FC<ClaimBlockProps> = () => {
     const loc = useLocation()
     const [title, setTitle] = useState('Claim')
 
+
     useEffect(() => {
         const lastClicked = localStorage.getItem('buttonLastClicked');
         if (lastClicked) {
@@ -32,13 +33,11 @@ export const ClaimBlock:FC<ClaimBlockProps> = () => {
     setIsDisabled(true);
   };
 
-  useEffect(() => {
-    if(loc.pathname === '/') {
-        setTitle('Claim')
-    } else if(loc.pathname === '/frens') {
-        setTitle('Invite friends')
-    }
-  }, [loc])
+//   useEffect(() => {
+//     if(loc.pathname === '/frens') {
+//         setTitle('Invite friends')
+//     }
+//   }, [loc])
 
   const handler = () => {
     if(loc.pathname === '/frens') {
@@ -49,8 +48,7 @@ export const ClaimBlock:FC<ClaimBlockProps> = () => {
     return (
         <div className={styles.claimBLock} onClick={handler} >
             <span className={styles.claimTitle}>
-                {title}
-                {title === 'Claim' && <img className={styles.tokenIco} src={tokenIco} />}
+                Invite friends
             </span>
             {loc.pathname === '/frens' && 
                 <div className={styles.copyIcoWrap}>

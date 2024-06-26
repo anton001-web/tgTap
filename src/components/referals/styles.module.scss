@@ -12,7 +12,9 @@
     height: 100%;
     border-radius: 20px;
     box-sizing: border-box;
-    padding: 20px 20px 10px 20px
+    padding: 20px 20px 10px 20px;
+    display: flex;
+    flex-direction: column;
 }
 
 .referalTitleBlock {
@@ -51,13 +53,14 @@
     text-transform: uppercase;
     gap: 10px;
 
-    svg {
+    img {
         width: 45px;
         height: 45px;
     }
 }
 
 .referalList {
+    flex: 1;
     margin-top: 10px;
     display: flex;
     flex-direction: column;
@@ -101,7 +104,7 @@
     font-weight: 700;
     color: #F0F0E6;
 
-    svg {
+    img {
         width: 30px;
         height: 30px;
     }
@@ -110,4 +113,12 @@
 .border {
     height: 3px;
     background: linear-gradient(to right, #D4F0F000, #fff, #D4F0F000);
+}
+
+.noData {
+    margin: 0 auto;
+    color: #fff;
+    font-size: 30px;
+    font-family: "SFPRO";
+    margin-top: 20px;
 }

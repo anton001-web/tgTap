@@ -4,11 +4,16 @@ import { Swiper, SwiperSlide, useSwiper } from 'swiper/react'
 import 'swiper/css'
 import nextArr from '../../assets/images/nextArr.png'
 import Mines from '../../assets/images/minesIco.svg?react'
+import { Link, useNavigate } from 'react-router-dom'
 
 interface SwiperPageProps {}
 
 export const SwiperPage:FC<SwiperPageProps> = () => {
     const swiperRef = useRef<any>();
+
+    const handlePlay = () => {
+        localStorage.setItem('visitedSwiperPage', 'true');
+    }
 
     return (
         <div className={s.swiperPageWrap}>
@@ -51,8 +56,8 @@ export const SwiperPage:FC<SwiperPageProps> = () => {
                             </p>
                             <div className={`${s.swiperNextBtn} nextBtn`}>
                                 <div className={s.dots}>
-                                    <div className={`${s.dot} ${s.dotRed}`}></div>
                                     <div className={s.dot}></div>
+                                    <div className={`${s.dot} ${s.dotRed}`}></div>
                                     <div className={s.dot}></div>
                                 </div>
                                 <div className={`${s.nextBtn}`} onClick={() => {
@@ -71,10 +76,10 @@ export const SwiperPage:FC<SwiperPageProps> = () => {
                             <p className={s.swiperText}>
                                 Arial is a sans-serif typeface and set of computer fonts in the neo-grotesque style. 
                             </p>
-                            <div className={s.swiperPlayBlock}>
+                            <Link onClick={handlePlay} to='home' className={s.swiperPlayBlock}>
                                 play
                                 <Mines className={s.Mines} />
-                            </div>
+                            </Link>
                         </div>
                     </div>
                 </SwiperSlide>

@@ -1,0 +1,329 @@
+.minesWrap {
+    background: #000;
+    width: 100vw;
+    height: calc(100% + 14px);
+    padding-bottom: 50px;
+    margin: -7px -7px -7px -7px;
+    position: relative;
+    display: flex;
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.bgItem {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    bottom: 0;
+    right: 0;
+}
+
+.minesHeader {
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 20px;
+    // overflow: hidden;
+    position: relative;
+
+    
+}
+
+.minesHeaderShadow {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.minesHeaderGroup {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+
+    img {
+        width: 55px;
+        height: 55px;
+    }
+}
+
+.minesHeaderTitle {
+    font-family: "SFPRO";
+    font-size: 18px;
+    color: #F0F0E6;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.minesHeaderValue {
+    font-family: "SFPRO";
+    font-size: 26px;
+    color: #F0F0E6;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+
+.minesHeaderRewardBlock {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    // gap: 10px;
+    justify-content: center;
+}
+
+.rewardTitle {
+    font-family: "SFPRO";
+    font-size: 18px;
+    color: #F0F0E6;
+    font-weight: 700;
+}
+
+.rewardValue {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: "SFPRO";
+    font-size: 70px;
+    color: #F0F0E6;
+    font-weight: 700;
+
+    img {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+.minesTable {
+    border-radius: 15px;
+    border: 2px solid #7D0000;
+    background: #1E1E1E;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
+    box-sizing: border-box;
+    padding: 20px;
+    z-index: 10;
+    position: relative;
+    flex: 1;
+    max-height: 400px;
+}
+
+.minesTableItem {
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #E42929;
+    // height: 100%;
+    aspect-ratio: 1/1;
+    box-shadow: 3px 4px #570707;
+    box-sizing: border-box;
+
+    &Active {
+        box-shadow: 0px 0px 15px 1px #DE0607;
+        background: #1E1E1E;
+        border: 5px solid #DE0607;
+    }
+}
+
+
+
+.claimBLock {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 10px 0 10px;
+    min-height: 75px;
+    background: #DE0607;
+    border-radius: 15px;
+    box-shadow: 0px 0px 15px 1px #DE0607;
+    position: relative;
+}
+
+.claimTitle {
+    display: flex;
+    align-items: center;
+    font-family: "SFPRO";
+    font-weight: 500;
+    letter-spacing: 1px;
+    font-size: 20px;
+    color: #fff;
+    gap: 10px;
+}  
+
+.tokenIco {
+    width: 30px;
+    height: 30px;
+}
+
+.modal {
+    z-index: 99999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    box-sizing: border-box;
+    padding: 30px 10px;
+    background: #1E1E1E;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all .2s;
+    opacity: 0;
+    visibility: hidden;
+    justify-content: space-between;
+}
+
+.modalVisibility {
+    opacity: 1;
+    visibility: visible;
+}
+
+.catWrap {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.winTitle {
+    z-index: 2;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-family: "SFPRO";
+    color: #fff;
+    font-weight: 700;
+    font-size: 70px;
+    margin-top: 20px;
+
+    .winCoin {
+        width: 62px;
+        height: 62px;
+    }
+}
+
+.modalIco {
+    position: absolute;
+    right: 0;
+    bottom: 100px;
+    z-index: 3;
+}
+
+.modalIco2 {
+    position: absolute;
+    left: 0;
+    width: 130px;
+    height: 130px;
+    bottom: 0;
+    z-index: 3;
+}
+
+.modalFooter {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    width: 100%;
+    position: relative;
+    z-index: 10;
+}
+
+.modalInvite {
+    height: 70px;
+    border-radius: 10px;
+    border: 3px solid #DE0607;
+    box-shadow: 0px 0px 15px 1px #DE0607;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #111;
+    font-family: "SFPRO";
+    font-size: 20px;
+    color: #fff;
+    gap: 7px;
+
+    img {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+.modalPlayBtn {
+    display: flex;
+    height: 70px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: #fff;
+    font-family: "SFPRO";
+    color: #DE0607;
+    font-size: 20px;
+
+    svg {
+        margin: 0 5px;
+        width: 30px;
+        height: 30px;
+    }
+}
+
+.modalFragment {
+    background: #DE0607;
+    position: absolute;
+    height: 300px;
+    width: 500%;
+    bottom: -100px;
+    z-index: 0;
+    transform: rotate(-15deg);
+}
+
+.minesItemCoin {
+    .minesBomb {
+        display: none;
+    }
+
+    .minesCoin {
+        display: block;
+    }
+
+    .minesQuest {
+        display: none;
+    }
+}
+
+.minesItemBomb {
+    .minesBomb {
+        display: block;
+    }
+
+    .minesCoin {
+        display: none;
+    }
+
+    .minesQuest {
+        display: none;
+    }
+}
+
+.minesBomb {
+    display: none;
+    width: 70%;
+}
+
+.minesCoin {
+    width: 60%;
+    display: none;
+}

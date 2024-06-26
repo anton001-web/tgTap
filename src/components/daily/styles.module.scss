@@ -12,7 +12,14 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    transition: all .2s;
+    opacity: 0;
+    visibility: hidden;
+}
 
+.dailyWrapActive {
+    opacity: 1;
+    visibility: visible;
 }
 
 .dailyFooter {

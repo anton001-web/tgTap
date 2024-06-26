@@ -49,6 +49,13 @@
 }
 
 .GamieBlock {
+    text-decoration: none;
+
+    a {
+        text-decoration: none;  
+        color: #F0F0E6;
+    }
+
     position: absolute;
     bottom: 10px;
     right: 10px;
