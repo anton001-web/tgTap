@@ -2,7 +2,6 @@ import {FC} from 'react'
 import s from './styles.module.scss'
 import cat from '../../assets/images/dailyCat.png'
 import TokenIco from "../../assets/images/tokenIco.svg?react"
-import minesIco from '../../assets/images/minesIco.png'
 import footerBg from '../../assets/images/dailyFooterImg.png'
 
 interface DailyProps {

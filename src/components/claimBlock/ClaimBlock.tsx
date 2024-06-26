@@ -1,43 +1,13 @@
-import {FC, useEffect, useState} from 'react'
+import {FC} from 'react'
 import styles from './styles.module.scss'
-import tokenIco  from '../../assets/images/tokenRed.png'
 import { useLocation, useNavigate } from 'react-router-dom';
 import CopyIco from '../../assets/images/copyIco.svg?react'
 
 interface ClaimBlockProps {}
 
 export const ClaimBlock:FC<ClaimBlockProps> = () => {
-    const [isDisabled, setIsDisabled] = useState(false);
     const navigate = useNavigate()
     const loc = useLocation()
-    const [title, setTitle] = useState('Claim')
-
-
-    useEffect(() => {
-        const lastClicked = localStorage.getItem('buttonLastClicked');
-        if (lastClicked) {
-        const timeElapsed = Date.now() - new Date(lastClicked).getTime();
-        const hoursElapsed = timeElapsed / (1000 * 60 * 60);
-
-        if (hoursElapsed >= 8) {
-            setIsDisabled(false);
-            localStorage.removeItem('buttonLastClicked');
-        } else {
-            setIsDisabled(true);
-        }
-        }
-    }, []);
-
-  const handleClick = () => {
-    localStorage.setItem('buttonLastClicked', new Date().toISOString());
-    setIsDisabled(true);
-  };
-
-//   useEffect(() => {
-//     if(loc.pathname === '/frens') {
-//         setTitle('Invite friends')
-//     }
-//   }, [loc])
 
   const handler = () => {
     if(loc.pathname === '/frens') {

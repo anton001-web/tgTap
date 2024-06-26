@@ -13,19 +13,13 @@ import { WinModal } from './WinModal'
 import { useNavigate } from 'react-router-dom'
 import { sendPoints } from '../api/api'
 
-const arr1 = [true, true, true]
-const arr2 = [false, true, false]
-const arr3 = [true, false, true]
-
 interface MinesProps {}
 
 export const Mines:FC<MinesProps> = () => {
-    const [POSTRES, setPOSTRES] = useState<any>()
     const [table, setTable] = useState<any>(null)
     const {token}:any = useContext(TokenContext)
     const [reward, setReward] = useState<number>(0)
     const navigate = useNavigate()
-    const arrayTotal = arr1.concat(arr2).concat(arr3)
     const [lose, setLose] = useState(false)
     const [modalVisibility, setModalVisibility] = useState(false)
     const [tableList, setTableList] = useState([])
@@ -49,7 +43,7 @@ export const Mines:FC<MinesProps> = () => {
 
     const sendPointsF = async (isBombed:boolean) => {
         const res = await sendPoints(token, (reward / 10), isBombed)
-        setPOSTRES(res)
+        // setPOSTRES(res)
         return res
     }
 
@@ -86,9 +80,6 @@ export const Mines:FC<MinesProps> = () => {
             }
 
         } else {
-            if(token) {
-                const bombRes = sendPointsF(true)
-            }
             handleReset()
             setReward(0)
             setLose(true)

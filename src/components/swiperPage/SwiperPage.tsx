@@ -1,10 +1,10 @@
 import {FC, useRef} from 'react'
 import s from './styles.module.scss'
-import { Swiper, SwiperSlide, useSwiper } from 'swiper/react'
+import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import nextArr from '../../assets/images/nextArr.png'
 import Mines from '../../assets/images/minesIco.svg?react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 interface SwiperPageProps {}
 

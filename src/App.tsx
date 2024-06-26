@@ -4,7 +4,7 @@ import './styles/App.scss'
 import { ClaimBlock } from './components/claimBlock/ClaimBlock';
 import { FooterMenu } from './components/footerMenu/FooterMenu';
 import { Home } from './components/home/Home';
-import { Route, Routes, useLocation, useNavigate, useParams } from 'react-router-dom';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { Frens } from './components/frens/Frens';
 import FrensBgItem from './assets/images/frensBgItem.svg?react'
 import { Referals } from './components/referals/Referals';

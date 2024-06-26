@@ -2,29 +2,28 @@ import {FC, useContext, useEffect, useState} from 'react'
 import s from './styles.module.scss'
 import icoTest from '../../assets/images/refIcoTest.png'
 import Pike from '../../assets/images/refIco.svg?react'
-import TokenIco from "../../assets/images/tokenIco.svg?react"
 import { getReferral } from '../api/api'
 import { TokenContext } from '../../providers/Auth'
 import tokenWhite from '../../assets/images/tokenWhite.png'
 
-const list = [
-    {
-        name: "@eblan",
-        balance: '25.54'
-    },
-    {
-        name: "@eblan",
-        balance: '25.54'
-    },
-    {
-        name: "@eblan",
-        balance: '25.54'
-    },
-    {
-        name: "@eblan",
-        balance: '25.54'
-    },
-]
+// const list = [
+//     {
+//         name: "@eblan",
+//         balance: '25.54'
+//     },
+//     {
+//         name: "@eblan",
+//         balance: '25.54'
+//     },
+//     {
+//         name: "@eblan",
+//         balance: '25.54'
+//     },
+//     {
+//         name: "@eblan",
+//         balance: '25.54'
+//     },
+// ]
 
 interface ReferalsProps {}
 

@@ -1,6 +1,5 @@
 import { FC, useContext, useEffect, useState } from 'react'
 import styles from './styles.module.scss'
-import TokenIco from "../../../../assets/images/tokenIco.svg?react"
 import SendIco from '../../../../assets/images/sendIco.svg?react'
 import { TokenContext } from '../../../../providers/Auth'
 import { getUser } from '../../../api/api'

@@ -1,7 +1,7 @@
 import styles from './styles.module.scss'
 import { FC, useContext, useEffect, useState } from 'react'
 import minesIco from '../../../../assets/images/minesIco.png'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { TokenContext } from '../../../../providers/Auth'
 import { getUser } from '../../../api/api'
 
