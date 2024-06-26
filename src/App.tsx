@@ -16,7 +16,6 @@ import { Mines } from './components/mines/Mines';
 import { TokenContext } from './providers/Auth';
 import { userAuth } from './components/api/api';
 
-
 function App() {
   const [modalVisibility, setModalVisibility] = useState(false)
   const loc = useLocation()
