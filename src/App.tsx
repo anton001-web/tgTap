@@ -108,12 +108,12 @@ function App() {
     }
   }, [location, navigate]);
 
-  useEffect(() => {
-    console.log('INFO', authData)
-    if(authData.points_to_claim) {
+  // useEffect(() => {
+  //   console.log('INFO', authData)
+  //   if(authData.points_to_claim) {
       
-    }
-  }, [authData])
+  //   }
+  // }, [authData])
 
   const setToken = () => {
     
