@@ -82,6 +82,7 @@ export const Mines:FC<MinesProps> = () => {
         } else {
             handleReset()
             setReward(0)
+            sendPointsF(true)
             setLose(true)
             clickedItem?.classList.add(s.minesItemBomb)
 

@@ -21,7 +21,8 @@ export const WinModal:FC<WinModalProps> = ({winValue, visibility}) => {
     }
 
     const playMoreHandler = () => { 
-        window.location.reload()
+        // window.location.reload()
+        navigate(0)
     }
 
     return (
