@@ -164,6 +164,7 @@ function App() {
 
   const claimFn = async () => {
     const res = await claimPoints(authData?.token)
+    console.log(res)
     localStorage.setItem('count', JSON.stringify(0));
     setIsActive(false)
     setCount(0)
