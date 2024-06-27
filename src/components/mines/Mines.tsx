@@ -1,14 +1,13 @@
 import {FC, useContext, useEffect, useState} from 'react'
 import s from './styles.module.scss'
-import minesQuest from '../../assets/images/minesQuest.png'
-import minesCoin from '../../assets/images/minesCoin.png'
-import minesBomb from '../../assets/images/minesBomb.png'
-import tokenRed from '../../assets/images/tokenRed.png'
-import tokenWhite from '../../assets/images/tokenWhite.png'
-import shadow from '../../assets/images/minesHeaderShadow.png'
+import minesQuest from '../../assets/images/minesQuest.webp'
+import minesCoin from '../../assets/images/minesCoin.webp'
+import minesBomb from '../../assets/images/minesBomb.webp'
+import tokenRed from '../../assets/images/tokenRed.webp'
+import tokenWhite from '../../assets/images/tokenWhite.webp'
+import shadow from '../../assets/images/minesHeaderShadow.webp'
 import FrensBgItem from '../../assets/images/frensBgItem.svg?react'
 import { TokenContext } from '../../providers/Auth'
-import { getTable } from '../api/api'
 import { WinModal } from './WinModal'
 import { useNavigate } from 'react-router-dom'
 import { sendPoints } from '../api/api'
@@ -16,30 +15,20 @@ import { sendPoints } from '../api/api'
 interface MinesProps {}
 
 export const Mines:FC<MinesProps> = () => {
-    const [table, setTable] = useState<any>(null)
-    const {token}:any = useContext(TokenContext)
+    const {token, minesTable}:any = useContext(TokenContext)
     const [reward, setReward] = useState<number>(0)
     const navigate = useNavigate()
     const [lose, setLose] = useState(false)
     const [modalVisibility, setModalVisibility] = useState(false)
     const [tableList, setTableList] = useState([])
     
-    const getTableF = async () => {
-        const res = await getTable(token)
-        setTable(res.playing_board)
-        // console.log(res)
-    }
 
     useEffect(() => {
-        token && getTableF()
-    }, [token])
-
-    useEffect(() => {
-        if(table) {
-            const flattenedArray = table.reduce((acc:any, val:boolean) => acc.concat(val), []);
+        if(minesTable) {
+            const flattenedArray = minesTable.reduce((acc:any, val:boolean) => acc.concat(val), []);
             setTableList(flattenedArray)
         }
-    }, [table])
+    }, [minesTable])
 
     const sendPointsF = async (isBombed:boolean) => {
         const res = await sendPoints(token, (reward / 10), isBombed)
@@ -59,12 +48,16 @@ export const Mines:FC<MinesProps> = () => {
     }
 
     const handleReset = () => {
-
+        const items = document.querySelectorAll('.minesItem')
+        items.forEach(item => {
+            item.classList.remove('ITEMCLICKED', s.minesItemCoin, s.minesItemBomb)
+        })
+        setReward(0)
+        setLose(false)
     }
 
     const handleCheck = (itemState:boolean, ind:number) => {
         const clickedItem = document.getElementById(`minesTableItem${ind}`)
-        // console.log(clickedItem, itemState)
 
         if(lose) {
             return null
@@ -96,7 +89,7 @@ export const Mines:FC<MinesProps> = () => {
 
     return (
         <div className={s.minesWrap}>
-            <WinModal winValue={reward} visibility={modalVisibility} />
+            <WinModal winValue={reward} reset={handleReset} setVisibility={setModalVisibility} visibility={modalVisibility} />
             <FrensBgItem className={s.bgItem} />
             <div className={s.minesHeader}>
                 <img className={s.minesHeaderShadow} src={shadow} />

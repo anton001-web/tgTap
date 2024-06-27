@@ -83,6 +83,7 @@
 .tasksBlock {
     margin-top: 20px;
     box-sizing: border-box;
+    min-height: 240px;
     padding: 15px 10px;
     background: #1E1E1E;
     border-radius: 15px;
@@ -126,13 +127,11 @@
     justify-content: center;
     align-items: center;
     border-radius: 5px;
-    background: #DE0607;
-    padding: 10px 5px;
     
-    svg {
-        width: 30px;
-        height: 30px;
-    }
+    // img {
+    //     width: 30px;
+    //     height: 30px;
+    // }
 }
 
 .tasksListItemGroup {
@@ -175,12 +174,21 @@
     font-weight: 700;
 }
 
+.claimBtnDone {
+    background: #DE0607;
+    border-radius: 10px;
+}
+
 .tasksBlockGreen {
     border-color: #207041;
     box-shadow: 0px 0px 10px 1px #207041;
 
-    .pawBlock {
+    .claimBtnDone {
         background: #207041;
+    }
+
+    .pawBlock {
+        // background: #207041;
     }
 
     .claimBtn {

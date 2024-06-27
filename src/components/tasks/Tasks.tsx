@@ -1,9 +1,8 @@
 import {FC, useContext, useEffect, useState} from 'react'
 import s from './styles.module.scss'
-import romb from '../../assets/images/tasksRomb.png'
+import romb from '../../assets/images/tasksRomb.webp'
 import { DailyTasks, ListT } from './components/DailyTasks'
 import { TokenContext } from '../../providers/Auth'
-import { getTasks } from '../api/api'
 
 // const tasks = [
 //     {
@@ -32,30 +31,20 @@ import { getTasks } from '../api/api'
 interface TasksProps {}
 
 export const Tasks:FC<TasksProps> = () => {
-    const {token}:any = useContext(TokenContext)
-    const [tasksList, setTasksList] = useState<any>()
+    const {tasks}:any = useContext(TokenContext)
     const [dailyTasks, setDailyTasks] = useState<any>()
     const [basicTasks, setBasicTasks] = useState<any>()
 
-    const getTasksF = async () => {
-        const res = await getTasks(token)
-        setTasksList(res)
-    }
-
     useEffect(() => {
-        if(tasksList) {
+        if(tasks) {
             setBasicTasks(
-                tasksList.filter((item:ListT) => item.task_type === 'basic')
+                tasks.filter((item:ListT) => item.task_type === 'basic')
             )
             setDailyTasks(
-                tasksList.filter((item:ListT) => item.task_type === 'daily')
+                tasks.filter((item:ListT) => item.task_type === 'daily')
             )
         }
-    }, [tasksList])
-
-    useEffect(() => {
-        token && getTasksF()
-    }, [token])
+    }, [tasks])
 
     return (
         <div className={s.tasksWrap}>
@@ -70,7 +59,7 @@ export const Tasks:FC<TasksProps> = () => {
                 <div className={s.availableBlock}>
                     <div className={s.availableGroup}>
                         <img className={s.romb} src={romb} />
-                        15 <span>available</span>
+                        {tasks && tasks.length - tasks[0].total_completed_tasks | 0} <span>available</span>
                     </div>
                     <p className={s.availableText}>Here u can farm exta points</p>
                     <div className={s.availableBorder}></div>

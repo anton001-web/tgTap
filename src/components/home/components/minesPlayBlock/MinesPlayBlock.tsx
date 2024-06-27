@@ -1,34 +1,22 @@
 import styles from './styles.module.scss'
-import { FC, useContext, useEffect, useState } from 'react'
-import minesIco from '../../../../assets/images/minesIco.png'
+import { FC, useContext } from 'react'
+import minesIco from '../../../../assets/images/minesIco.webp'
 import { useNavigate } from 'react-router-dom'
 import { TokenContext } from '../../../../providers/Auth'
-import { getUser } from '../../../api/api'
 
 interface MinesPlayBlockProps {}
 
 export const MinesPlayBlock:FC<MinesPlayBlockProps> = () => {
-    const [data, setData] = useState<any>()
-    const {token}:any = useContext(TokenContext)
+    const {setMinesTable, profile}:any = useContext(TokenContext)
     const navigate = useNavigate()
 
-    const getUserF = async () => {
-        const res = await getUser(token)
-        setData(res)
-    }
-
-    useEffect(() => {
-        if(token) {
-            getUserF()
-        }       
-    }, [token])
-
-    const navigateFn = () => {
-        if(data.playing_tickets_amount) {
-            if(data?.playing_tickets_amount === 0) {
+    const navigateFn = async () => {
+        if(profile.playing_tickets_amount) {
+            if(profile?.playing_tickets_amount === 0) {
                 return null
             }
 
+            await setMinesTable()
             navigate('/mines')
         }
     }
@@ -39,7 +27,7 @@ export const MinesPlayBlock:FC<MinesPlayBlockProps> = () => {
                 <span className={styles.MinesTitle}>Mines</span>
                 <div className={styles.MinesGroup}>
                     <img src={minesIco} className={styles.MinesIco} />
-                    <span className={styles.gamesNum}>{data?.playing_tickets_amount}</span>
+                    <span className={styles.gamesNum}>{profile?.playing_tickets_amount}</span>
                 </div>
             </div>
             <div className={styles.GamieBlock} >

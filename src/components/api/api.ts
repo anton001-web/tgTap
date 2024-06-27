@@ -137,6 +137,55 @@ export const getReferral = async (authToken:string) => {
     }
 }
 
+export const getPointsPerSec = async (authToken:string) => {
+
+  try {
+      const response = await fetch(`${BASE_API_URL}/points/mining`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Headers": "*",
+          'Authorization': `Token ${authToken}`
+        },
+      });
+      if (!response.ok) {
+        const errorData = await response.json();
+        return errorData
+      } else {
+        const responseData = await response.json();
+        return responseData
+      }
+    } catch (error) {
+      return error
+    }
+}
+
+export const claimPoints = async (authToken:string) => {
+
+  try {
+      const response = await fetch(`${BASE_API_URL}/points/mining`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Headers": "*",
+          'Authorization': `Token ${authToken}`
+        },
+      });
+      if (!response.ok) {
+        const errorData = await response.json();
+        return errorData
+      } else {
+        const responseData = await response.json();
+        return responseData
+      }
+    } catch (error) {
+      return error
+    }
+}
+
+
 export const sendPoints = async (authToken:string, qty:number, isBombed:boolean) => {
 
   try {
@@ -152,6 +201,33 @@ export const sendPoints = async (authToken:string, qty:number, isBombed:boolean)
           right_answers_amount: qty,
           is_bombed: isBombed
         }),
+      });
+      if (!response.ok) {
+        const errorData = await response.json();
+        return errorData
+      } else {
+        const responseData = await response.json();
+        return responseData
+      }
+    } catch (error) {
+      return error
+    }
+}
+
+export const closeTask = async (authToken:string, taskId: number) => {
+
+  try {
+      const response = await fetch(`${BASE_API_URL}/tasks/comeplete-task/${taskId}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Headers": "*",
+          'Authorization': `Token ${authToken}`
+        },
+        // body: JSON.stringify({
+        //   task_id : taskId,
+        // }),
       });
       if (!response.ok) {
         const errorData = await response.json();

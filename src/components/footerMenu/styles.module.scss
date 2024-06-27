@@ -3,14 +3,16 @@
     background: #F0F0E6;
     border-radius: 15px;
     display: flex;
+    position: relative;
 }
 
 .MenuItem {
+    z-index: 3;
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 5px;
     text-transform: lowercase;
     font-size: 16px;
     color: #1E1E1E;
@@ -19,13 +21,19 @@
     font-weight: 700;
     font-family: "SFPRO";
     border-radius: 10px;
+    transition: all .3s;
+
+    svg {
+        position: relative;
+        z-index: 2;
+    }
 
     &Active {
         color: #F0F0E6;
-        background: #1E1E1E;
-        box-shadow: 0px 4px 21.2px 0px #000000A6;
+        // background: #1E1E1E;
+        // box-shadow: 0px 4px 21.2px 0px #000000A6;
 
-        &:nth-child(2), &:nth-child(3) {
+        & {
             svg {
                 g {
                     rect {
@@ -36,6 +44,39 @@
         }
     }
 }
+
+.tasksTodo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #FF0000;
+    font-family: "SFPRO";
+    font-size: 10px;
+    color: #F0F0E6;
+    position: absolute;
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+    top: 3px;
+    left: 67%;
+    transform: translateX(-50%);
+    min-width: 20px;
+    min-height: 20px;
+    z-index: 1;
+}
+
+.Border {
+    transition: all .3s;
+    z-index: 2;
+    width: 33.333%;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    border-radius: 10px;
+    background: #1E1E1E;
+    box-shadow: 0px 4px 21.2px 0px #000000A6;
+
+}
+
 
 .Icon {
     width: 30px;

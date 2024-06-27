@@ -1,6 +1,6 @@
 import {FC} from 'react'
 import styles from './styles.module.scss'
-import cat from "../../../../assets/images/mainCat.png"
+import cat from "../../../../assets/images/mainCat.webp"
 
 interface MainCatProps {}
 

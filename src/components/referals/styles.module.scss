@@ -6,7 +6,7 @@
 }
 
 .referalBlock {
-    background-image: url("../../assets/images/referalsBg.png");
+    background-image: url("../../assets/images/referalsBg.webp");
     background-size: cover;
     background-repeat: no-repeat;
     height: 100%;
@@ -82,7 +82,7 @@
 .referalItemGroup {
     display: flex;
     flex-direction: column;
-    align-items: start;
+    align-items: end;
     justify-content: space-between;
     gap: 10px;
 }

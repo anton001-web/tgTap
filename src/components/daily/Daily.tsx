@@ -1,8 +1,8 @@
 import {FC} from 'react'
 import s from './styles.module.scss'
-import cat from '../../assets/images/dailyCat.png'
+import cat from '../../assets/images/dailyCat.webp'
 import TokenIco from "../../assets/images/tokenIco.svg?react"
-import footerBg from '../../assets/images/dailyFooterImg.png'
+import footerBg from '../../assets/images/dailyFooterImg.webp'
 
 interface DailyProps {
     visibility: boolean,

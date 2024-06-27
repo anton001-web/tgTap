@@ -1,28 +1,28 @@
-import {FC} from 'react'
+import {Dispatch, FC, SetStateAction, useContext} from 'react'
 import s from './styles.module.scss'
-import cat from '../../assets/images/modalCat.png'
-import modalCoin from '../../assets/images/modalCoin.png'
-import modalCoin2 from '../../assets/images/modalCoin2.png'
+import cat from '../../assets/images/modalCat.webp'
+import modalCoin from '../../assets/images/modalCoin.webp'
+import modalCoin2 from '../../assets/images/modalCoin2.webp'
 import Mines from '../../assets/images/minesIco.svg?react'
-import minesIco from '../../assets/images/minesIco.png'
-import { useNavigate } from 'react-router-dom'
-import tokenWhite from '../../assets/images/tokenWhite.png'
+import minesIco from '../../assets/images/minesIco.webp'
+import { Link } from 'react-router-dom'
+import tokenWhite from '../../assets/images/tokenWhite.webp'
+import { TokenContext } from '../../providers/Auth'
 
 interface WinModalProps {
     winValue: number;
-    visibility: boolean
+    visibility: boolean;
+    setVisibility: Dispatch<SetStateAction<boolean>>;
+    reset: () => void;
 }
 
-export const WinModal:FC<WinModalProps> = ({winValue, visibility}) => {
-    const navigate = useNavigate()
+export const WinModal:FC<WinModalProps> = ({winValue, visibility, setVisibility, reset}) => {
+    const {setMinesTable}:any = useContext(TokenContext)
 
-    const inviteHandler = () => {
-        navigate('/referals')
-    }
-
-    const playMoreHandler = () => { 
-        // window.location.reload()
-        navigate(0)
+    const playMoreHandler = async () => {
+        await setMinesTable()
+        reset() 
+        setVisibility(false)
     }
 
     return (
@@ -38,9 +38,9 @@ export const WinModal:FC<WinModalProps> = ({winValue, visibility}) => {
                 </span>
             </div>
             <div className={s.modalFooter}>
-                <div onClick={inviteHandler} className={s.modalInvite}>
+                <Link to='/frens' className={s.modalInvite}>
                     invite friends for <img src={minesIco} />
-                </div>
+                </Link>
                 <div onClick={playMoreHandler} className={s.modalPlayBtn}>
                     Play 1 more ( 7 <Mines /> left )
                 </div>

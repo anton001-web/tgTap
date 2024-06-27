@@ -10,19 +10,52 @@ import FrensBgItem from './assets/images/frensBgItem.svg?react'
 import { Referals } from './components/referals/Referals';
 import { Daily } from './components/daily/Daily';
 import { Tasks } from './components/tasks/Tasks';
-import TasksBgItem from './assets/images/tasksBgItem.png'
+import TasksBgItem from './assets/images/tasksBgItem.webp'
 import { SwiperPage } from './components/swiperPage/SwiperPage';
 import { Mines } from './components/mines/Mines';
 import { TokenContext } from './providers/Auth';
-import { userAuth } from './components/api/api';
+import { claimPoints, getPointsPerSec, getReferral, getTable, getTasks, getUser, userAuth } from './components/api/api';
 
 function App() {
   const [modalVisibility, setModalVisibility] = useState(false)
   const loc = useLocation()
+  const [profile, setProfile] = useState<any>()
   const [info, setInfo] = useState<any>()
   const navigate = useNavigate()
   const [authData, setAuthData] = useState<any>();
+  const [tasksList, setTasksList] = useState<any>()
   const [kentId, setKentId] = useState<string>('')
+  const [table, setTable] = useState<any>(null)
+  const [refsInfo, setRefsInfo] = useState<any>()
+
+  ///
+  const [secValue, setSecValue] = useState<any>()
+  const [count, setCount] = useState(0);
+  const [isActive, setIsActive] = useState(false);
+  
+  ///
+
+  const getRefsF = async () => {
+    const res = await getReferral(authData?.token)
+    setRefsInfo(res)
+  }
+
+  useEffect(() => {
+    if(authData?.token && !refsInfo) {
+      getRefsF()
+    }     
+  }, [authData?.token])
+
+  const getUserF = async () => {
+    const res = await getUser(authData?.token)
+    setProfile(res)
+  }
+
+  useEffect(() => {
+      if(authData?.token && !profile) {
+          getUserF()
+      }       
+  }, [authData?.token])
 
   useEffect(() => {
     if (window.Telegram?.WebApp) {
@@ -37,13 +70,15 @@ function App() {
       parts && setKentId(parts[1].trim())
 
       setInfo(initDataUnsafe.user)
+      console.log('initData:', data);
+  
     } 
 
   }, []);
 
   useEffect(() => {
-    console.log('KENT', kentId)
-  }, [kentId])
+    console.log('second', count)
+  }, [count])
 
   const authUserF = async () => {
     const res = await userAuth({
@@ -61,7 +96,7 @@ function App() {
     const visitedSwiperPage = localStorage.getItem('visitedSwiperPage');
 
     if(visitedSwiperPage) {
-      if(info?.id) {
+      if(info?.id && !authData) {
         authUserF()
       }
     }
@@ -91,6 +126,15 @@ function App() {
     }
   }, [loc])
 
+  const getTasksF = async () => {
+    const res = await getTasks(authData?.token)
+    setTasksList(res)
+  }
+
+  useEffect(() => {
+    authData?.token && !tasksList && getTasksF()
+  }, [authData?.token])
+
   useEffect(() => {
     if(loc.pathname === '/' || loc.pathname === '/mines') {
       document.body.style.overflowY = 'hidden'
@@ -108,12 +152,61 @@ function App() {
     }
   }, [location, navigate]);
 
-  // useEffect(() => {
-  //   console.log('INFO', authData)
-  //   if(authData.points_to_claim) {
-      
-  //   }
-  // }, [authData])
+  useEffect(() => {
+    if(authData?.points_to_claim) {
+      setModalVisibility(true)
+    } else {
+      setModalVisibility(false)
+    }
+  }, [authData])
+
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  const claimFn = async () => {
+    const res = await claimPoints(authData?.token)
+    localStorage.setItem('count', JSON.stringify(0));
+    setIsActive(false)
+    setCount(0)
+  }
+
+  const getPointsSecFn = async () => {
+    const res = await getPointsPerSec(authData?.token)
+    setSecValue(res)
+    setIsActive(true)
+  }
+
+  useEffect(() => {
+    const savedCount = localStorage.getItem('count');
+    const savedTime = localStorage.getItem('time');
+
+    if (savedCount && savedTime) {
+
+      setCount(parseInt(savedCount));
+    }
+  }, []);
+
+  useEffect(() => {
+    let timer:any;
+    if (isActive) {
+      timer = setInterval(() => {
+        setCount((prevCount) => prevCount + secValue?.points_per_second);
+      }, 1000);
+    }
+
+    return () => clearInterval(timer);
+  }, [isActive]);
+
+
+  useEffect(() => {
+    localStorage.setItem('count', JSON.stringify(count));
+  }, [count]);
+
+  /////
+
+  const getTableF = async () => {
+    const res = await getTable(authData?.token)
+    setTable(res.playing_board)
+  }
 
   const setToken = () => {
     
@@ -122,7 +215,7 @@ function App() {
   return (
 
     <TokenContext.Provider
-      value={{ token: authData?.token, setToken }}
+      value={{ token: authData?.token, setToken, tasks: tasksList, minesTable: table, setMinesTable: getTableF, profile: profile, referals: refsInfo }}
     >
       <div className='mainWrap' style={{padding: '7px'}} >
         <Daily visibility={modalVisibility} setVisibility={setModalVisibility} />
@@ -143,7 +236,14 @@ function App() {
               className='footer'
             >
               {
-                loc.pathname !== '/referals' && loc.pathname !== '/tasks' && loc.pathname !== '/home' && <ClaimBlock />
+                loc.pathname !== '/referals' && loc.pathname !== '/tasks' && 
+                <ClaimBlock 
+                  claimValue={count} 
+                  setIsActive={setIsActive} 
+                  isActive={isActive}
+                  onClick={getPointsSecFn}
+                  claimFn={claimFn}
+                />
               }
               <FooterMenu />
             </div>
