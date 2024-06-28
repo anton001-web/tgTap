@@ -5,7 +5,6 @@ import CherryIco from '../../assets/images/cherryIco.svg?react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import tokenWhite from '../../assets/images/tokenWhite.webp'
 import { TokenContext } from '../../providers/Auth'
-import {useVibrate} from 'react-use';
 
 interface FooterMenuProps {}
 
