@@ -11,7 +11,8 @@ import { TokenContext } from '../../providers/Auth'
 import { WinModal } from './WinModal'
 import { sendPoints } from '../api/api'
 import { LoseModal } from './LoseModal'
-
+import closeIco from '../../assets/images/closeIco.png'
+import { Link } from 'react-router-dom'
 interface MinesProps {}
 
 export const Mines:FC<MinesProps> = () => {
@@ -98,23 +99,28 @@ export const Mines:FC<MinesProps> = () => {
             <LoseModal setVisibility={setLoseModal} visibility={loseModal} />
             <FrensBgItem className={s.bgItem} />
             <div className={s.minesHeader}>
-                <img className={s.minesHeaderShadow} src={shadow} />
-                <div className={s.minesHeaderGroup}>
-                    <span className={s.minesHeaderTitle}>chips</span>
-                    <img className={s.minesHeaderToken} src={minesCoin} />
-                    <span className={s.minesHeaderValue}>6</span>
-                </div>
-                <div className={s.minesHeaderRewardBlock}>
-                    <span className={s.rewardTitle}>Reward</span>
-                    <span className={s.rewardValue}>
-                        {reward}
-                        <img src={tokenWhite} />
-                    </span>
-                </div>
-                <div className={s.minesHeaderGroup}>
-                    <span className={s.minesHeaderTitle}>mines</span>
-                    <img className={s.minesHeaderToken} src={minesBomb} />
-                    <span className={s.minesHeaderValue}>3</span>
+                <Link to='/home' className={s.closeIcoMines} >
+                    <img src={closeIco} />
+                </Link>
+                <div className={s.minesHeaderBody}>
+                    <img className={s.minesHeaderShadow} src={shadow} />
+                    <div className={s.minesHeaderGroup}>
+                        <span className={s.minesHeaderTitle}>chips</span>
+                        <img className={s.minesHeaderToken} src={minesCoin} />
+                        <span className={s.minesHeaderValue}>6</span>
+                    </div>
+                    <div className={s.minesHeaderRewardBlock}>
+                        <span className={s.rewardTitle}>Reward</span>
+                        <span className={s.rewardValue}>
+                            {reward}
+                            <img src={tokenWhite} />
+                        </span>
+                    </div>
+                    <div className={s.minesHeaderGroup}>
+                        <span className={s.minesHeaderTitle}>mines</span>
+                        <img className={s.minesHeaderToken} src={minesBomb} />
+                        <span className={s.minesHeaderValue}>3</span>
+                    </div>
                 </div>
             </div>
             <div className={s.minesTable}>

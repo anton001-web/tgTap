@@ -4,6 +4,8 @@ import icoTest from '../../assets/images/refIcoTest.webp'
 import Pike from '../../assets/images/refIco.svg?react'
 import { TokenContext } from '../../providers/Auth'
 import tokenWhite from '../../assets/images/tokenWhite.webp'
+import { Link } from 'react-router-dom'
+import closeIco from '../../assets/images/closeIco.png'
 
 // const list = [
 //     {
@@ -36,6 +38,9 @@ export const Referals:FC<ReferalsProps> = () => {
     return (
         <div className={s.referalWrap}>
             <div className={s.referalBlock}>
+                <Link to='/home' className={s.closeIco} >
+                    <img src={closeIco} />
+                </Link>
                 <div className={s.referalTitleBlock}>
                     <Pike className={s.pike} />
                     referals
