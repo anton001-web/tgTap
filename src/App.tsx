@@ -15,6 +15,8 @@ import { SwiperPage } from './components/swiperPage/SwiperPage';
 import { Mines } from './components/mines/Mines';
 import { TokenContext } from './providers/Auth';
 import { claimPoints, getPointsPerSec, getReferral, getTable, getTasks, getUser, userAuth } from './components/api/api';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
 
 function App() {
   const [modalVisibility, setModalVisibility] = useState(false)
@@ -27,10 +29,14 @@ function App() {
   const [kentId, setKentId] = useState<string>('')
   const [table, setTable] = useState<any>(null)
   const [refsInfo, setRefsInfo] = useState<any>()
+  const [tokensBalance, setTokensBalance] = useState<any>()
+  const [tickets, setTickets] = useState<number>()
+  // const [mainedValue, setMainedValue] = useState<number>()
 
   ///
   const [secValue, setSecValue] = useState<any>()
   const [count, setCount] = useState(0);
+  const [zero, setZero] = useState<boolean>(false)
   const [isActive, setIsActive] = useState(false);
   
   ///
@@ -45,6 +51,10 @@ function App() {
       getRefsF()
     }     
   }, [authData?.token])
+
+  const toastFn = (title:string) => {
+    toast(title)
+  }
 
   const getUserF = async () => {
     const res = await getUser(authData?.token)
@@ -76,9 +86,6 @@ function App() {
 
   }, []);
 
-  useEffect(() => {
-    console.log('second', count)
-  }, [count])
 
   const authUserF = async () => {
     const res = await userAuth({
@@ -90,7 +97,30 @@ function App() {
       kentId: kentId?.toString(),
     })
     setAuthData(res)
-}
+  }
+
+  const setBalance = (addPoints:number, isIncrement:boolean) => {
+    if(isIncrement) {
+      setTokensBalance(profile.total_points + addPoints)
+      console.log(profile.total_points + addPoints)
+      console.log(profile.total_points, addPoints)
+    } else {
+      setTokensBalance(addPoints)
+    }
+  }
+
+  const setTicketsFn = (ticket:number) => {
+    if(tickets) {
+      setTickets(tickets - ticket)
+    }
+  }
+
+  useEffect(() => {
+    if(profile) {
+      setTokensBalance(profile.total_points)
+      setTickets(profile.playing_tickets_amount)
+    }
+  }, [profile])
 
   useEffect(() => {
     const visitedSwiperPage = localStorage.getItem('visitedSwiperPage');
@@ -108,6 +138,7 @@ function App() {
     if(loc.pathname === '/home') {
       document.body.classList.add('Main')
       document.body.classList.remove('Frens')
+      document.body.classList.remove('Tasks')
     } else if (loc.pathname === '/frens') {
       document.body.classList.add('Frens')
       document.body.classList.remove('Main')
@@ -164,7 +195,8 @@ function App() {
 
   const claimFn = async () => {
     const res = await claimPoints(authData?.token)
-    console.log(res)
+    setBalance(res.total_mined_points, true)
+    // setMainedValue(res.total_mined_points)
     localStorage.setItem('count', JSON.stringify(0));
     setIsActive(false)
     setCount(0)
@@ -174,7 +206,28 @@ function App() {
     const res = await getPointsPerSec(authData?.token)
     setSecValue(res)
     setIsActive(true)
+
   }
+
+  useEffect(() => {
+    const el = document.querySelector('.odometer-formatting-mark')
+    if(count <= 1 && count >= 0.001) {
+      setZero(true)
+
+    } else {
+      setZero(false)
+
+    }
+
+    if(count <= 0.09 && count >= 0.001) {
+      el?.classList.add('hidden')
+    } else {
+      const zeroComa = document.querySelector('.zeroComa')
+      zeroComa?.classList.add('hidden')
+    }
+
+  }, [count])
+
 
   useEffect(() => {
     const savedCount = localStorage.getItem('count');
@@ -204,6 +257,17 @@ function App() {
 
   /////
 
+  const setTasks = (id:number) => {
+    const newTasksList = tasksList.map((element:any) => {
+      if (element.id === id) {
+        return { ...element, is_completed_task: true };
+      }
+      return element;
+    });
+    setTasksList(newTasksList)
+  };
+
+
   const getTableF = async () => {
     const res = await getTable(authData?.token)
     setTable(res.playing_board)
@@ -216,9 +280,27 @@ function App() {
   return (
 
     <TokenContext.Provider
-      value={{ token: authData?.token, setToken, tasks: tasksList, minesTable: table, setMinesTable: getTableF, profile: profile, referals: refsInfo }}
+      value={{ token: authData?.token, setToken, tasks: tasksList, toaster: toastFn, setTasks: setTasks, minesTable: table, setMinesTable: getTableF, profile: profile, referals: refsInfo, tokensBalance: tokensBalance, setBalance: setBalance, tickets: tickets, setTickets: setTicketsFn }}
     >
-      <div className='mainWrap' style={{padding: '7px'}} >
+      <div style={{paddingBottom: loc.pathname === '/mines' ? '7px' : '80px'}} className={`mainWrap ${loc.pathname === '/frens' && 'mainWrapBottom'}`} >
+        {
+          loc.pathname !== '/' && loc.pathname !== '/mines' && (
+            <FooterMenu />
+          )
+        }
+        <ToastContainer
+          className={'toast'}
+          position="top-right"
+          autoClose={2000}
+          hideProgressBar={true}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+        />
         <Daily visibility={modalVisibility} setVisibility={setModalVisibility} />
         {loc.pathname === '/frens' && <FrensBgItem className='frensBgItem' />}
         {loc.pathname === '/tasks' && <img src={TasksBgItem} className='tasksBgItem' />}
@@ -231,25 +313,19 @@ function App() {
           <Route path='/tasks' element={<Tasks />} />
           <Route path='/mines' element={<Mines />} />
         </Routes>
-        {
-          loc.pathname !== '/' && loc.pathname !== '/mines' &&  (
-            <div
-              className='footer'
+        <div
+              className={`footer ${loc.pathname === '/home' && 'footerVisible'}`}
             >
-              {
-                loc.pathname !== '/referals' && loc.pathname !== '/tasks' && 
-                <ClaimBlock 
+              <ClaimBlock 
+                  setZero={setZero}
+                  zero={zero}
                   claimValue={count} 
                   setIsActive={setIsActive} 
                   isActive={isActive}
                   onClick={getPointsSecFn}
                   claimFn={claimFn}
                 />
-              }
-              <FooterMenu />
-            </div>
-          )
-        }
+        </div>                  
       </div>
     </TokenContext.Provider>
   )

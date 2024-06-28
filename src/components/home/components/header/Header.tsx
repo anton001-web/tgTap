@@ -7,7 +7,7 @@ import tokenWhite from '../../../../assets/images/tokenWhite.webp'
 interface HeaderProps {}
 
 export const Header:FC<HeaderProps> = () => {
-    const {profile}:any = useContext(TokenContext)
+    const {profile, tokensBalance}:any = useContext(TokenContext)
 
     return (
         <header 
@@ -15,7 +15,7 @@ export const Header:FC<HeaderProps> = () => {
         >
             <div className={styles.headerGroup}>
                 <img src={tokenWhite} className={styles.headerToken} />
-                <span className={styles.headerTitle} >{profile?.total_points.toFixed(2)}</span>
+                <span className={styles.headerTitle} >{tokensBalance?.toFixed(2)}</span>
             </div>
             <div className={styles.headerTopWrap}>
                 <div className={styles.headerTopBlock}>

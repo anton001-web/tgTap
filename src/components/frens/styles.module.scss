@@ -3,4 +3,88 @@
     flex-direction: column;
     justify-content: space-between;
     flex: 1;
+
+    @media screen and (max-height: 600px) {
+        padding-bottom: 80px;
+    }
+}
+
+.claimBLock {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 75px;
+    background: #DE0607;
+    border-radius: 15px;
+    box-shadow: 0px 0px 15px 1px #DE0607;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.claimTitle {
+    display: flex;
+    align-items: center;
+    font-family: "SFPRO";
+    font-weight: 700;
+    font-size: 20px;
+    color: #fff;
+    gap: 5px;
+    transition: all .3s;
+}
+
+.claimTitleAnim {
+    transform: translateX(-300%);
+}
+
+.tokenIco {
+    width: 30px;
+    height: 30px;
+}
+
+.copyIco {
+
+    width: 40px;
+    height: 40px;
+}
+
+.copyIcoWrap {
+    transition: all .3s;
+    box-sizing: border-box;
+    padding: 8px 5px;
+    position: absolute;
+    left: calc(100% - 50px);
+    width: 50px;
+    top: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(-50%);
+    background: #fff;
+    border-radius: 10px;
+    right: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.copyIcoWrapAnim {
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.zero {
+    font-size: 19px;
+    position: relative;
+    left: 4.5px;
+    bottom: 1.5px;
+}
+
+.checkIcoWrap {
+    transition: all .3s;
+    position: absolute;
+    right: -300px;
+}
+
+.checkIcoWrapAnim {
+    right: 40px;
+
 }

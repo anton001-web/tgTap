@@ -1,6 +1,7 @@
 .tasksWrap {
     padding: 10px;
     box-sizing: border-box;
+    padding-bottom: 95px;
 }
 
 .tasksHeader {
@@ -11,11 +12,11 @@
 
 .tasksTitleBlock {
     display: flex;
-    gap: 10px;
+    gap: 8px;
+    justify-content: center;
     padding: 10px;
     box-sizing: border-box;
     align-items: center;
-    justify-content: space-between;
     background: #207041;
     border-radius: 10px;
 }

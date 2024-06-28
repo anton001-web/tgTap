@@ -11,40 +11,22 @@ interface FooterMenuProps {}
 export const FooterMenu:FC<FooterMenuProps> = () => {
     const loc = useLocation()
     const [tab, setTab] = useState<string>('home')
-    const [right, setRight] = useState<string>()
     const navigate = useNavigate()
     const {tasks}:any = useContext(TokenContext)
 
     useEffect(() => {
         if(loc.pathname === '/home') {
             setTab('home')
-            setRight('0')
         } else if (loc.pathname === '/frens') {
             setTab('frens')
-            setRight('100%')
         } else if (loc.pathname === '/referals') {
             setTab('frens')
-            setRight('100%')
         } else if (loc.pathname === '/tasks') {
             setTab('tasks')
-            setRight('50%')
         }
     }, [loc])
 
-    useEffect(() => {
-        if(loc.pathname === '/home') {
-            setRight('0')
-        } else if (loc.pathname === '/frens') {
-            setRight('100%')
-        } else if (loc.pathname === '/referals') {
-            setRight('100%')
-        } else if (loc.pathname === '/tasks') {
-            setRight('50%')
-        }
-    }, [])
-
-    const clickHandle = (link:string, pos:string) => {
-        setRight(pos)
+    const clickHandle = (link:string) => {
 
         setTimeout(() => {
             setTab(link)
@@ -57,22 +39,19 @@ export const FooterMenu:FC<FooterMenuProps> = () => {
 
     return (
         <div className={styles.FooterMenu}>
-            <div className={`${styles.Border} `} style={{
-                left: right,
-                transform: `translateX(-${right})`
-            }} ></div>
-            <span onClick={() => clickHandle('home', '0')} className={`${styles.MenuItem} ${tab === 'home' && styles.MenuItemActive}`}>
+            <div className={`${styles.Border} ${tab === 'home' ? styles.BorderLeft : tab === 'tasks' ? styles.BorderCenter : styles.BorderRight}`}></div>
+            <span onClick={() => clickHandle('home')} className={`${styles.MenuItem} ${tab === 'home' && styles.MenuItemActive}`}>
                 <img src={tokenWhite} className={styles.Icon} />
                 home
             </span>
-            <span onClick={() => clickHandle('tasks', '50%')} className={`${styles.MenuItem} ${tab === 'tasks' && styles.MenuItemActive}`}>
+            <span onClick={() => clickHandle('tasks')} className={`${styles.MenuItem} ${tab === 'tasks' && styles.MenuItemActive}`}>
                 <CardsIco className={styles.Icon} />
                 tasks
                 <div className={styles.tasksTodo}>
                     {tasks && tasks.length - tasks[0].total_completed_tasks | 0}
                 </div>
             </span>
-            <span  onClick={() => clickHandle('frens', '100%')} className={`${styles.MenuItem} ${tab === 'frens' && styles.MenuItemActive}`}>
+            <span  onClick={() => clickHandle('frens')} className={`${styles.MenuItem} ${tab === 'frens' && styles.MenuItemActive}`}>
                 <CherryIco className={styles.Icon} />
                 frens
             </span>

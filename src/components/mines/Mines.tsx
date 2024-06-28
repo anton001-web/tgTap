@@ -15,7 +15,7 @@ import { sendPoints } from '../api/api'
 interface MinesProps {}
 
 export const Mines:FC<MinesProps> = () => {
-    const {token, minesTable}:any = useContext(TokenContext)
+    const {token, minesTable, setBalance, setTickets}:any = useContext(TokenContext)
     const [reward, setReward] = useState<number>(0)
     const navigate = useNavigate()
     const [lose, setLose] = useState(false)
@@ -30,9 +30,15 @@ export const Mines:FC<MinesProps> = () => {
         }
     }, [minesTable])
 
+    useEffect(() => {
+        if(!minesTable) {
+            window.location.href = '/home'
+        }
+    }, [])
+
     const sendPointsF = async (isBombed:boolean) => {
         const res = await sendPoints(token, (reward / 10), isBombed)
-        // setPOSTRES(res)
+        setBalance(res.total_reward, true)
         return res
     }
 
@@ -43,7 +49,7 @@ export const Mines:FC<MinesProps> = () => {
         }
         
         token && sendPointsF(false)
-
+        setTickets(1)
         setModalVisibility(true)
     }
 
@@ -73,6 +79,7 @@ export const Mines:FC<MinesProps> = () => {
             }
 
         } else {
+            setTickets(1)
             handleReset()
             setReward(0)
             sendPointsF(true)

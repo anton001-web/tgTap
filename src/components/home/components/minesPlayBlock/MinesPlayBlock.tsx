@@ -7,12 +7,13 @@ import { TokenContext } from '../../../../providers/Auth'
 interface MinesPlayBlockProps {}
 
 export const MinesPlayBlock:FC<MinesPlayBlockProps> = () => {
-    const {setMinesTable, profile}:any = useContext(TokenContext)
+    const {setMinesTable, tickets, toaster}:any = useContext(TokenContext)
     const navigate = useNavigate()
 
     const navigateFn = async () => {
-        if(profile.playing_tickets_amount) {
-            if(profile?.playing_tickets_amount === 0) {
+        if(tickets) {
+            if(tickets === 0) {
+                toaster('No tickets :(')
                 return null
             }
 
@@ -27,7 +28,7 @@ export const MinesPlayBlock:FC<MinesPlayBlockProps> = () => {
                 <span className={styles.MinesTitle}>Mines</span>
                 <div className={styles.MinesGroup}>
                     <img src={minesIco} className={styles.MinesIco} />
-                    <span className={styles.gamesNum}>{profile?.playing_tickets_amount}</span>
+                    <span className={styles.gamesNum}>{tickets}</span>
                 </div>
             </div>
             <div className={styles.GamieBlock} >
