@@ -202,6 +202,10 @@ function App() {
     setCount(0)
   }
 
+  useEffect(() => {
+    window.scrollTo(0, 10)
+  }, [])
+
   const getPointsSecFn = async () => {
     
     const res = await getPointsPerSec(authData?.token)

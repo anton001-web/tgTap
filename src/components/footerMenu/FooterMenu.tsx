@@ -5,6 +5,7 @@ import CherryIco from '../../assets/images/cherryIco.svg?react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import tokenWhite from '../../assets/images/tokenWhite.webp'
 import { TokenContext } from '../../providers/Auth'
+import {useVibrate} from 'react-use';
 
 interface FooterMenuProps {}
 
@@ -27,6 +28,13 @@ export const FooterMenu:FC<FooterMenuProps> = () => {
     }, [loc])
 
     const clickHandle = (link:string) => {
+
+        if (navigator.vibrate) {
+            navigator.vibrate(200);
+            navigator.vibrate([200]);
+          } else {
+            console.log('Вибрация не поддерживается этим устройством');
+          }
 
         setTimeout(() => {
             setTab(link)

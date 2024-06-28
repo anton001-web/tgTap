@@ -21,7 +21,7 @@ export const Mines:FC<MinesProps> = () => {
     const [lose, setLose] = useState(false)
     const [modalVisibility, setModalVisibility] = useState(false)
     const [tableList, setTableList] = useState([])
-    const [loseModal, setLoseModal] = useState(false)
+    const [loseModal, setLoseModal] = useState(true)
 
     useEffect(() => {
         if(minesTable) {
@@ -83,7 +83,6 @@ export const Mines:FC<MinesProps> = () => {
             setTickets(1)
             handleReset()
             setReward(0)
-            sendPointsF(true)
             setLose(true)
             clickedItem?.classList.add(s.minesItemBomb)
 
