@@ -9,19 +9,18 @@ import shadow from '../../assets/images/minesHeaderShadow.webp'
 import FrensBgItem from '../../assets/images/frensBgItem.svg?react'
 import { TokenContext } from '../../providers/Auth'
 import { WinModal } from './WinModal'
-import { useNavigate } from 'react-router-dom'
 import { sendPoints } from '../api/api'
+import { LoseModal } from './LoseModal'
 
 interface MinesProps {}
 
 export const Mines:FC<MinesProps> = () => {
     const {token, minesTable, setBalance, setTickets}:any = useContext(TokenContext)
     const [reward, setReward] = useState<number>(0)
-    const navigate = useNavigate()
     const [lose, setLose] = useState(false)
     const [modalVisibility, setModalVisibility] = useState(false)
     const [tableList, setTableList] = useState([])
-    
+    const [loseModal, setLoseModal] = useState(false)
 
     useEffect(() => {
         if(minesTable) {
@@ -79,6 +78,7 @@ export const Mines:FC<MinesProps> = () => {
             }
 
         } else {
+            setLoseModal(true)
             setTickets(1)
             handleReset()
             setReward(0)
@@ -86,9 +86,7 @@ export const Mines:FC<MinesProps> = () => {
             setLose(true)
             clickedItem?.classList.add(s.minesItemBomb)
 
-            setTimeout(() => {
-                navigate('/home')
-            }, 1000)
+
         }
 
         clickedItem?.classList.add('ITEMCLICKED')
@@ -97,6 +95,7 @@ export const Mines:FC<MinesProps> = () => {
     return (
         <div className={s.minesWrap}>
             <WinModal winValue={reward} reset={handleReset} setVisibility={setModalVisibility} visibility={modalVisibility} />
+            <LoseModal setVisibility={setLoseModal} visibility={loseModal} />
             <FrensBgItem className={s.bgItem} />
             <div className={s.minesHeader}>
                 <img className={s.minesHeaderShadow} src={shadow} />

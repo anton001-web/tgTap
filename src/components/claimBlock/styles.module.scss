@@ -21,9 +21,11 @@
     color: #fff;
     gap: 5px;
     transition: all .3s;
+    text-wrap: nowrap;
 }
 
 .claimLol {
+    width: 100%;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);

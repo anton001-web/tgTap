@@ -11,19 +11,18 @@ export const MinesPlayBlock:FC<MinesPlayBlockProps> = () => {
     const navigate = useNavigate()
 
     const navigateFn = async () => {
-        if(tickets) {
-            if(tickets === 0) {
-                toaster('No tickets :(')
-                return null
-            }
-
-            await setMinesTable()
-            navigate('/mines')
+        if(tickets === 0) {
+            toaster('No tickets :(')
+            console.log('sdfdsfds')
+            return null
         }
+
+        await setMinesTable()
+        navigate('/mines')
     }
 
     return (
-        <div className={styles.PlayBlock}>
+        <div className={styles.PlayBlock} onClick={navigateFn}>
             <div className={styles.Mines}>
                 <span className={styles.MinesTitle}>Mines</span>
                 <div className={styles.MinesGroup}>
@@ -32,7 +31,7 @@ export const MinesPlayBlock:FC<MinesPlayBlockProps> = () => {
                 </div>
             </div>
             <div className={styles.GamieBlock} >
-                <span onClick={navigateFn}>GamIe</span>
+                <span>GamIe</span>
             </div>
         </div>
     )

@@ -8,6 +8,7 @@ import minesIco from '../../assets/images/minesIco.webp'
 import { Link } from 'react-router-dom'
 import tokenWhite from '../../assets/images/tokenWhite.webp'
 import { TokenContext } from '../../providers/Auth'
+import closeIco from '../../assets/images/closeIco.png'
 
 interface WinModalProps {
     winValue: number;
@@ -27,6 +28,9 @@ export const WinModal:FC<WinModalProps> = ({winValue, visibility, setVisibility,
 
     return (
         <div className={`${s.modal} ${visibility && s.modalVisibility}`}>
+            <Link to='/home' className={s.closeIco} >
+                <img src={closeIco} />
+            </Link>
             <img src={modalCoin} className={s.modalIco} />
             <img src={modalCoin2} className={s.modalIco2} />
             <div className={s.modalFragment}></div>

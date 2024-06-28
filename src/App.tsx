@@ -203,6 +203,7 @@ function App() {
   }
 
   const getPointsSecFn = async () => {
+    
     const res = await getPointsPerSec(authData?.token)
     setSecValue(res)
     setIsActive(true)
@@ -313,6 +314,7 @@ function App() {
           <Route path='/tasks' element={<Tasks />} />
           <Route path='/mines' element={<Mines />} />
         </Routes>
+        
         <div
               className={`footer ${loc.pathname === '/home' && 'footerVisible'}`}
             >
