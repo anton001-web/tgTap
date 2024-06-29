@@ -14,7 +14,7 @@ import TasksBgItem from './assets/images/tasksBgItem.webp'
 import { SwiperPage } from './components/swiperPage/SwiperPage';
 import { Mines } from './components/mines/Mines';
 import { TokenContext } from './providers/Auth';
-import { claimPoints, getPointsPerSec, getReferral, getTable, getTasks, getUser, userAuth } from './components/api/api';
+import { claimPoints, getPointsPerSec, getReferral, getTable, getTasks, getUser, userAuth} from './components/api/api';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
 
@@ -195,8 +195,9 @@ function App() {
 
   const claimFn = async () => {
     const res = await claimPoints(authData?.token)
-    setBalance(res.total_mined_points, true)
-    // setMainedValue(res.total_mined_points)
+    const pos = await getUser(authData?.token)
+    console.log(res)
+    setBalance(pos.total_points, false)
     localStorage.setItem('count', JSON.stringify(0));
     setIsActive(false)
     setCount(0)
