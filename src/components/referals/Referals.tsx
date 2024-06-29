@@ -43,7 +43,7 @@ export const Referals:FC<ReferalsProps> = () => {
                 </Link>
                 <div className={s.referalTitleBlock}>
                     <Pike className={s.pike} />
-                    referals
+                    friends
                 </div>
                 <div className={s.referalBalance}>
                     <img src={tokenWhite} />
@@ -71,7 +71,7 @@ export const Referals:FC<ReferalsProps> = () => {
                 </div>
                 <div className={s.referalTitleBlock}>
                     <Pike className={s.pike} />
-                    referals
+                    friends
                 </div>
             </div>
         </div>

@@ -21,7 +21,7 @@ export const Mines:FC<MinesProps> = () => {
     const [lose, setLose] = useState(false)
     const [modalVisibility, setModalVisibility] = useState(false)
     const [tableList, setTableList] = useState([])
-    const [loseModal, setLoseModal] = useState(true)
+    const [loseModal, setLoseModal] = useState(false)
 
     useEffect(() => {
         if(minesTable) {

@@ -30,9 +30,9 @@ export const MinesPlayBlock:FC<MinesPlayBlockProps> = () => {
                     <span className={styles.gamesNum}>{tickets}</span>
                 </div>
             </div>
-            <div className={styles.GamieBlock} >
+            {/* <div className={styles.GamieBlock} >
                 <span>GamIe</span>
-            </div>
+            </div> */}
         </div>
     )
 }

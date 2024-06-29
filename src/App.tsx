@@ -200,6 +200,9 @@ function App() {
     localStorage.setItem('count', JSON.stringify(0));
     setIsActive(false)
     setCount(0)
+    if(!tokensBalance) {
+      toastFn('Oops, something went wrong, please, reload the page')
+    }
   }
 
   useEffect(() => {
@@ -207,16 +210,14 @@ function App() {
   }, [])
 
   const getPointsSecFn = async () => {
-    
     const res = await getPointsPerSec(authData?.token)
     setSecValue(res)
     setIsActive(true)
-
   }
 
   useEffect(() => {
     const el = document.querySelector('.odometer-formatting-mark')
-    if(count <= 1 && count >= 0.001) {
+    if(count <= 0.9 && count >= 0.001) {
       setZero(true)
 
     } else {
