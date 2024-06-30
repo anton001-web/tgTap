@@ -18,6 +18,7 @@ import { claimPoints, getPointsPerSec, getReferral, getTable, getTasks, getUser,
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
 import { MinesInfoModal } from './components/home/components/minesPlayBlock/MinesInfoModal';
+import { DesktopMobile } from './components/DesktopMobile/DesktopMobile';
 
 function App() {
   const [modalVisibility, setModalVisibility] = useState(false)
@@ -33,6 +34,7 @@ function App() {
   const [tokensBalance, setTokensBalance] = useState<any>()
   const [tickets, setTickets] = useState<number>()
   const [minesModal, setMinesModal] = useState(false)
+  const [mobile, setMobile] = useState('')
   // const [mainedValue, setMainedValue] = useState<number>()
 
   ///
@@ -70,6 +72,23 @@ function App() {
   }, [authData?.token])
 
   useEffect(() => {
+    const userAgent = navigator.userAgent
+
+    const containsMobile = /Mobile\//i.test(userAgent)
+    const containsMobileTwo = /Mobile/i.test(userAgent)
+
+    if(containsMobile || containsMobileTwo) {
+      setMobile('mobile')
+      // alert('IS MOBILE')
+    } else {
+      setMobile('desktop')
+      // alert('IS DESKTOP')
+    }
+  }, [])
+
+  useEffect(() => {
+    
+
     if (window.Telegram?.WebApp) {
       const initDataUnsafe = window.Telegram.WebApp.initDataUnsafe;
       const data = window.Telegram.WebApp.initData;
@@ -266,7 +285,6 @@ function App() {
     return () => clearInterval(timer);
   }, [isActive]);
 
-
   useEffect(() => {
     localStorage.setItem('count', JSON.stringify(count));
   }, [count]);
@@ -298,12 +316,17 @@ function App() {
     <TokenContext.Provider
       value={{ token: authData?.token, setToken, tasks: tasksList, toaster: toastFn, setTasks: setTasks, minesTable: table, setMinesTable: getTableF, profile: profile, referals: refsInfo, tokensBalance: tokensBalance, setBalance: setBalance, tickets: tickets, setTickets: setTicketsFn }}
     >
-      <div style={{paddingBottom: loc.pathname === '/mines' ? '7px' : '80px'}} className={`mainWrap ${loc.pathname === '/home' && 'mainWrapClaim'} ${loc.pathname === '/frens' && 'mainWrapBottom'}`} >
+      {
+        mobile === 'desktop' ? (
+          <DesktopMobile />
+        ) : (
+          <div style={{paddingBottom: loc.pathname === '/mines' ? '7px' : '80px'}} className={`mainWrap ${loc.pathname === '/home' && 'mainWrapClaim'} ${loc.pathname === '/frens' && 'mainWrapBottom'}`} >
         {
           loc.pathname !== '/' && loc.pathname !== '/mines' && (
             <FooterMenu />
           )
         }
+
         <ToastContainer
           className={'toast'}
           position="top-right"
@@ -345,6 +368,8 @@ function App() {
                 />
         </div>                  
       </div>
+        )
+      }
     </TokenContext.Provider>
   )
 }

@@ -52,7 +52,7 @@ export const DailyTasks:FC<DailyTasksProps> = ({variant, list}) => {
     return (
         <div className={`${s.tasksBlock} ${variant === 'red' ? s.tasksBlockRed : s.tasksBlockGreen}`}>
             <span className={s.tasksTitle}>
-                {variant === 'red' ? 'daily' : 'Basic'} tasks
+                {variant === 'red' ? 'Daily' : 'Basic'} tasks
                 <BowlBall className={s.bowlBall} />
             </span>
             <div className={s.tasksList}>
