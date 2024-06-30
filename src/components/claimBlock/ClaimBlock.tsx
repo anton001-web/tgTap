@@ -43,7 +43,7 @@ export const ClaimBlock:FC<ClaimBlockProps> = ({claimValue, onClick, claimFn, se
                 {zero && <span className={styles.zero}>
                         0
                         {/* <span className='zeroComa'>,0</span> */}
-                    </span>}<Odometer duration={900} value={claimValue} format="(.ddd),dd" /> <img className={styles.tokenIco} src={tokenIco} 
+                    </span>}<Odometer duration={900} value={claimValue} format="(.ddd).dd" /> <img className={styles.tokenIco} src={tokenIco} 
                 />
                 </>
             </span>

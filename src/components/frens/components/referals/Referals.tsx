@@ -15,7 +15,7 @@ export const Referals:FC<ReferalsProps> = () => {
     return (
         <div className={s.referalsWrap}>
             <div className={s.referalsGroup}>
-                <Link to='/referals' className={s.referalsCheckBtn}>friends list</Link>
+                <Link to='/referals' className={s.referalsCheckBtn}>Friends List</Link>
             </div>
             <div className={s.referalsLine}></div>
         </div>

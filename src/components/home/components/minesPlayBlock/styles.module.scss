@@ -1,7 +1,7 @@
 .PlayBlock {
     background-image: url("../../../../assets/images/minesPlayBg.webp");
     background-size: cover;
-    height: 160px;
+    min-height: 160px;
     background-repeat: no-repeat;
     width: 100%;
     padding: 10px;
@@ -48,27 +48,61 @@
     color: #F0F0E6;
 }
 
-.GamieBlock {
-    text-decoration: none;
-
-    a {
-        text-decoration: none;  
-        color: #F0F0E6;
-    }
-
+.Quest {
     position: absolute;
-    bottom: 10px;
     right: 10px;
-    border-radius: 30px;
+    width: 26px;
+    height: 26px;
+    top: 10px;
+    font-family: "SFPRO";
+    color: #fff;
+    border: 1px solid #fff;
+    border-radius: 50%;
+    cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: 'SFPRO';
-    font-weight: 600;
-    font-size: 16px;
-    color: #F0F0E6;
-    background: #DE06074D;
-    box-sizing: border-box;
-    padding: 3px 10px;
+}
 
+
+.modalOverlay {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 12322;
+    -webkit-backdrop-filter: blur(10px);
+    background: rgba(21, 21, 21, 0.5);
+    backdrop-filter: blur(25px);
+    opacity: 0;
+    visibility: hidden;
+    transition: all .15s ease-in;
+}
+
+.modalActive {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modalBody {
+    background: rgba(21, 21, 21, 0.7);
+    position: relative;
+    padding: 10px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - 60px);
+    gap: 10px;
+    margin: 0 20px 20px 20px
+}
+
+.modalText {
+    font-family: "SFPRO";
+    color: #fff;
+    font-size: 16px;
 }

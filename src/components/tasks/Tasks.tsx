@@ -61,7 +61,9 @@ export const Tasks:FC<TasksProps> = () => {
                         <img className={s.romb} src={romb} />
                         {tasks && tasks.length - tasks[0].total_completed_tasks | 0} <span>available</span>
                     </div>
-                    <p className={s.availableText}>Here u can farm exta points</p>
+                    <p className={s.availableText}>
+                        You can earn extra points by completing simple tasks
+                    </p>
                     <div className={s.availableBorder}></div>
                 </div> 
             </div>

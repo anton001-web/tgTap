@@ -65,7 +65,33 @@ body.Tasks {
   padding: 7px 7px 80px 7px;
   flex: 1;
   height: 100%;
-} 
+}
+
+.mainWrapClaim {
+  @media screen and (max-height: 620px) {
+    padding: 7px 7px 90px 7px !important;
+  }
+
+  @media screen and (max-height: 610px) {
+    padding: 7px 7px 100px 7px !important;
+  }
+
+  @media screen and (max-height: 600px) {
+    padding: 7px 7px 120px 7px !important;
+  }
+
+  @media screen and (max-height: 590px) {
+    padding: 7px 7px 130px 7px !important;
+  }
+
+  @media screen and (max-height: 580px) {
+    padding: 7px 7px 140px 7px !important;
+  }
+
+  @media screen and (max-height: 570px) {
+    padding: 7px 7px 150px 7px !important;
+  }
+}
 
 .frensBgItem {
   position: absolute;

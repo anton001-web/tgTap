@@ -1,12 +1,14 @@
 import styles from './styles.module.scss'
-import { FC, useContext } from 'react'
+import { Dispatch, FC, SetStateAction, useContext } from 'react'
 import minesIco from '../../../../assets/images/minesIco.webp'
 import { useNavigate } from 'react-router-dom'
 import { TokenContext } from '../../../../providers/Auth'
 
-interface MinesPlayBlockProps {}
+interface MinesPlayBlockProps {
+    setVisibility: Dispatch<SetStateAction<boolean>>
+}
 
-export const MinesPlayBlock:FC<MinesPlayBlockProps> = () => {
+export const MinesPlayBlock:FC<MinesPlayBlockProps> = ({setVisibility}) => {
     const {setMinesTable, tickets, toaster}:any = useContext(TokenContext)
     const navigate = useNavigate()
 
@@ -21,6 +23,11 @@ export const MinesPlayBlock:FC<MinesPlayBlockProps> = () => {
         navigate('/mines')
     }
 
+    const modalHandler = (e:any) => {
+        e.stopPropagation()
+        setVisibility(true)
+    }
+
     return (
         <div className={styles.PlayBlock} onClick={navigateFn}>
             <div className={styles.Mines}>
@@ -30,9 +37,9 @@ export const MinesPlayBlock:FC<MinesPlayBlockProps> = () => {
                     <span className={styles.gamesNum}>{tickets}</span>
                 </div>
             </div>
-            {/* <div className={styles.GamieBlock} >
-                <span>GamIe</span>
-            </div> */}
+            <div className={styles.Quest} onClick={modalHandler} >
+                <span>?</span>
+            </div>
         </div>
     )
 }

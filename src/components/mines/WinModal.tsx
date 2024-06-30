@@ -18,7 +18,7 @@ interface WinModalProps {
 }
 
 export const WinModal:FC<WinModalProps> = ({winValue, visibility, setVisibility, reset}) => {
-    const {setMinesTable}:any = useContext(TokenContext)
+    const {setMinesTable, tickets}:any = useContext(TokenContext)
 
     const playMoreHandler = async () => {
         await setMinesTable()
@@ -46,7 +46,7 @@ export const WinModal:FC<WinModalProps> = ({winValue, visibility, setVisibility,
                     invite friends for <img src={minesIco} />
                 </Link>
                 <div onClick={playMoreHandler} className={s.modalPlayBtn}>
-                    Play 1 more ( 7 <Mines /> left )
+                    Play 1 again ( {tickets} <Mines /> left )
                 </div>
             </div>
         </div>

@@ -17,6 +17,7 @@ import { TokenContext } from './providers/Auth';
 import { claimPoints, getPointsPerSec, getReferral, getTable, getTasks, getUser, userAuth} from './components/api/api';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
+import { MinesInfoModal } from './components/home/components/minesPlayBlock/MinesInfoModal';
 
 function App() {
   const [modalVisibility, setModalVisibility] = useState(false)
@@ -31,6 +32,7 @@ function App() {
   const [refsInfo, setRefsInfo] = useState<any>()
   const [tokensBalance, setTokensBalance] = useState<any>()
   const [tickets, setTickets] = useState<number>()
+  const [minesModal, setMinesModal] = useState(false)
   // const [mainedValue, setMainedValue] = useState<number>()
 
   ///
@@ -101,7 +103,7 @@ function App() {
 
   const setBalance = (addPoints:number, isIncrement:boolean) => {
     if(isIncrement) {
-      setTokensBalance(profile.total_points + addPoints)
+      setTokensBalance(tokensBalance + addPoints)
       console.log(profile.total_points + addPoints)
       console.log(profile.total_points, addPoints)
     } else {
@@ -235,6 +237,13 @@ function App() {
 
   }, [count])
 
+  useEffect(() => {
+    const el = document.querySelector('.odometer-formatting-mark')
+
+    if(el) {
+      el.textContent = '.'
+    }
+  }, [])
 
   useEffect(() => {
     const savedCount = localStorage.getItem('count');
@@ -289,7 +298,7 @@ function App() {
     <TokenContext.Provider
       value={{ token: authData?.token, setToken, tasks: tasksList, toaster: toastFn, setTasks: setTasks, minesTable: table, setMinesTable: getTableF, profile: profile, referals: refsInfo, tokensBalance: tokensBalance, setBalance: setBalance, tickets: tickets, setTickets: setTicketsFn }}
     >
-      <div style={{paddingBottom: loc.pathname === '/mines' ? '7px' : '80px'}} className={`mainWrap ${loc.pathname === '/frens' && 'mainWrapBottom'}`} >
+      <div style={{paddingBottom: loc.pathname === '/mines' ? '7px' : '80px'}} className={`mainWrap ${loc.pathname === '/home' && 'mainWrapClaim'} ${loc.pathname === '/frens' && 'mainWrapBottom'}`} >
         {
           loc.pathname !== '/' && loc.pathname !== '/mines' && (
             <FooterMenu />
@@ -309,12 +318,13 @@ function App() {
           theme="dark"
         />
         <Daily visibility={modalVisibility} setVisibility={setModalVisibility} />
+        <MinesInfoModal visibility={minesModal} setVisibility={setMinesModal} />
         {loc.pathname === '/frens' && <FrensBgItem className='frensBgItem' />}
         {loc.pathname === '/tasks' && <img src={TasksBgItem} className='tasksBgItem' />}
 
         <Routes>
           <Route path='/' element={<SwiperPage />} />
-          <Route path='/home' element={<Home />} />
+          <Route path='/home' element={<Home setVisibility={setMinesModal} />} />
           <Route path='/frens' element={<Frens />} />
           <Route path='/referals' element={<Referals />} />
           <Route path='/tasks' element={<Tasks />} />

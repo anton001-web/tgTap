@@ -1,6 +1,5 @@
 import { FC, useContext } from 'react'
 import styles from './styles.module.scss'
-import SendIco from '../../../../assets/images/sendIco.svg?react'
 import { TokenContext } from '../../../../providers/Auth'
 import tokenWhite from '../../../../assets/images/tokenWhite.webp'
 
@@ -19,11 +18,7 @@ export const Header:FC<HeaderProps> = () => {
             </div>
             <div className={styles.headerTopWrap}>
                 <div className={styles.headerTopBlock}>
-                    You`re TOP {profile?.top_percent || 0}%
-                </div>
-                <div className={styles.headerSendBlock}>
-                    {/* <img className={styles.headerToken} src={sendIco} /> */}
-                    <SendIco className={styles.headerSend} />
+                    YOU'RE TOP {profile?.top_percent || 0}% PLAYER
                 </div>
             </div>
         </header>
