@@ -12,7 +12,7 @@ interface TokenContextType {
     tokensBalance: any
     setBalance: (addPoints: number, isIncrement: boolean) => void
     setTickets: (ticket: number) => void
-    setTasks: (id: number) => void
+    setTasks: (id: number, taskResponse: any) => void
     toaster: (title: string) => void;
 }
 

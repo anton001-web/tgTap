@@ -31,8 +31,7 @@ export const DailyTasks:FC<DailyTasksProps> = ({variant, list}) => {
     const closeTaskFn = async (id:number) => {
         const res = await closeTask(token, id)
         setTaskRes(res)
-        setTasks(id)
-
+        setTasks(id, res)
     }
 
     useEffect(() => {
@@ -44,8 +43,8 @@ export const DailyTasks:FC<DailyTasksProps> = ({variant, list}) => {
     }, [taskRes])
 
     const claimHandler = (link:string, id:number) => {
-        window.open(link,'_blank', 'rel=noopener noreferrer')
         token && closeTaskFn(id)
+        window.open(link,'_blank', 'rel=noopener noreferrer')
     }
 
 

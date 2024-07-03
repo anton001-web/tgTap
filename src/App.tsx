@@ -291,8 +291,15 @@ function App() {
 
   /////
 
-  const setTasks = (id:number) => {
+  const setTasks = (id:number, taskResponse: any) => {
+    const ans = taskResponse.non_field_errors[0]
+
+    if(ans === 'Task was completed before') {
+      return null
+    }
+
     const newTasksList = tasksList.map((element:any) => {
+      element.total_completed_tasks = element.total_completed_tasks + 1
       if (element.id === id) {
         return { ...element, is_completed_task: true };
       }
