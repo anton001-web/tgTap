@@ -7,7 +7,8 @@ import CopyIco from '../../assets/images/copyIco.svg?react'
 import { TokenContext } from '../../providers/Auth'
 import checkIco from '../../assets/images/checkIco.png'
 
-const USER_REF_URL = 'https://t.me/antontest777_bot/Areva?start=kentId='
+// const USER_REF_URL = 'https://t.me/antontest777_bot/Areva?start=kentId='
+const USER_REF_URL = 'https://t.me/purrtapbot/PurrTapBot?start=kentId='
 
 interface FrensProps {}
 
