@@ -27,10 +27,11 @@ export const SwiperPage:FC<SwiperPageProps> = () => {
             >
                 <SwiperSlide className={s.swiperSlide} >
                     <div className={s.swiperSlideBody}>
-                        <h1 className={s.swiperTitle}>Play to suck</h1>
+                        <h1 className={s.miniTitle}>Welcome to</h1>
+                        <h1 className={s.swiperTitle}>$TAPCAT bot</h1>
                         <div className={`${s.swiperImgBlock} ${s.swiperImgBlock1}`}>
                             <p className={s.swiperText}>
-                                Arial is a sans-serif typeface and set of computer fonts in the neo-grotesque style. 
+                                Play games, complete tasks, <br /> and earn $TAPCAT daily
                             </p>
                             <div className={`${s.swiperNextBtn} nextBtn`}>
                                 <div className={s.dots}>
@@ -49,10 +50,10 @@ export const SwiperPage:FC<SwiperPageProps> = () => {
                 </SwiperSlide>
                 <SwiperSlide className={s.swiperSlide} >
                     <div className={s.swiperSlideBody}>
-                        <h1 className={s.swiperTitle}>Love cat to blow</h1>
+                        <h1 className={s.swiperTitle}>Investors</h1>
                         <div className={`${s.swiperImgBlock} ${s.swiperImgBlock2}`}>
                             <p className={s.swiperText}>
-                                Arial is a sans-serif typeface and set of computer fonts in the neo-grotesque style. 
+                                Backed by <span className={s.blurBlock}>adsasdadas</span> <br /> (will be revealed soon)
                             </p>
                             <div className={`${s.swiperNextBtn} nextBtn`}>
                                 <div className={s.dots}>
@@ -71,13 +72,13 @@ export const SwiperPage:FC<SwiperPageProps> = () => {
                 </SwiperSlide>
                 <SwiperSlide className={s.swiperSlide} >
                     <div className={s.swiperSlideBody}>
-                        <h1 className={s.swiperTitle}>frfr to ffrrfrfr</h1>
+                        <h1 className={s.swiperTitle}>Start now</h1>
                         <div className={`${s.swiperImgBlock} ${s.swiperImgBlock3}`}>
                             <p className={s.swiperText}>
-                                Arial is a sans-serif typeface and set of computer fonts in the neo-grotesque style. 
+                                Be the first cat gambler and get bonuses
                             </p>
                             <Link onClick={handlePlay} to='home' className={s.swiperPlayBlock}>
-                                play
+                                Play
                                 <Mines className={s.Mines} />
                             </Link>
                         </div>
