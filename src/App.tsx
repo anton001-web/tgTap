@@ -289,6 +289,16 @@ function App() {
     localStorage.setItem('count', JSON.stringify(count));
   }, [count]);
 
+  useEffect(() => {
+    if(typeof count !== 'number') {
+      toast('Something went wrong, try a lil bit later')
+      setIsActive(false)
+      setZero(false)
+      setCount(0)
+      localStorage.setItem('count', JSON.stringify(0));
+    }
+  }, [count])
+
   /////
 
   const setTasks = (id:number, taskResponse: any) => {
@@ -325,7 +335,55 @@ function App() {
     >
       {
         mobile === 'desktop' ? (
-          <DesktopMobile />
+          // <DesktopMobile />
+          <div style={{paddingBottom: loc.pathname === '/mines' ? '7px' : '80px'}} className={`mainWrap ${loc.pathname === '/home' && 'mainWrapClaim'} ${loc.pathname === '/frens' && 'mainWrapBottom'}`} >
+        {
+          loc.pathname !== '/' && loc.pathname !== '/mines' && (
+            <FooterMenu />
+          )
+        }
+
+        <ToastContainer
+          className={'toast'}
+          position="top-right"
+          autoClose={2000}
+          hideProgressBar={true}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+        />
+        <Daily visibility={modalVisibility} setVisibility={setModalVisibility} />
+        <MinesInfoModal visibility={minesModal} setVisibility={setMinesModal} />
+        {loc.pathname === '/frens' && <FrensBgItem className='frensBgItem' />}
+        {loc.pathname === '/tasks' && <img src={TasksBgItem} className='tasksBgItem' />}
+
+        <Routes>
+          <Route path='/' element={<SwiperPage />} />
+          <Route path='/home' element={<Home setVisibility={setMinesModal} />} />
+          <Route path='/frens' element={<Frens />} />
+          <Route path='/referals' element={<Referals />} />
+          <Route path='/tasks' element={<Tasks />} />
+          <Route path='/mines' element={<Mines />} />
+        </Routes>
+        
+        <div
+              className={`footer ${loc.pathname === '/home' && 'footerVisible'}`}
+            >
+              <ClaimBlock 
+                  setZero={setZero}
+                  zero={zero}
+                  claimValue={count} 
+                  setIsActive={setIsActive} 
+                  isActive={isActive}
+                  onClick={getPointsSecFn}
+                  claimFn={claimFn}
+                />
+        </div>                  
+      </div>
         ) : (
           <div style={{paddingBottom: loc.pathname === '/mines' ? '7px' : '80px'}} className={`mainWrap ${loc.pathname === '/home' && 'mainWrapClaim'} ${loc.pathname === '/frens' && 'mainWrapBottom'}`} >
         {
