@@ -1,6 +1,6 @@
 import {FC, useContext, useEffect} from 'react'
 import s from './styles.module.scss'
-import icoTest from '../../assets/images/refIcoTest.webp'
+import icoTest from '../../assets/images/refIcoTest.png'
 import Pike from '../../assets/images/refIco.svg?react'
 import { TokenContext } from '../../providers/Auth'
 import tokenWhite from '../../assets/images/tokenWhite.webp'
