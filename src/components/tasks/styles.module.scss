@@ -134,10 +134,10 @@
     align-items: center;
     border-radius: 5px;
     
-    // img {
-    //     width: 30px;
-    //     height: 30px;
-    // }
+    img {
+        width: 40px;
+        height: 50px;
+    }
 }
 
 .tasksListItemGroup {
@@ -163,7 +163,11 @@
     color: #BCBCBC;
     font-size: 16px;
     font-family: "SFPRO";
-    font-weight: 700;
+    font-weight: 400;
+
+    span {
+        font-weight: 700;
+    }
 }
 
 .claimBtn {

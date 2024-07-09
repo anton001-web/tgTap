@@ -302,7 +302,12 @@ function App() {
   /////
 
   const setTasks = (id:number, taskResponse: any) => {
-    const ans = taskResponse.non_field_errors[0]
+
+    let ans
+
+    if(taskResponse?.non_field_errors) {
+      ans = taskResponse?.non_field_errors[0]
+    }
 
     if(ans === 'Task was completed before') {
       return null
@@ -315,7 +320,10 @@ function App() {
       }
       return element;
     });
-    setTasksList(newTasksList)
+
+    setTimeout(() => {
+      setTasksList(newTasksList)
+    }, 3000)
   };
 
 
@@ -331,7 +339,7 @@ function App() {
   return (
 
     <TokenContext.Provider
-      value={{ token: authData?.token, setToken, tasks: tasksList, toaster: toastFn, setTasks: setTasks, minesTable: table, setMinesTable: getTableF, profile: profile, referals: refsInfo, tokensBalance: tokensBalance, setBalance: setBalance, tickets: tickets, setTickets: setTicketsFn }}
+      value={{ token: authData?.token, refCode: authData?.refferal_code, setToken, tasks: tasksList, toaster: toastFn, setTasks: setTasks, minesTable: table, setMinesTable: getTableF, profile: profile, referals: refsInfo, tokensBalance: tokensBalance, setBalance: setBalance, tickets: tickets, setTickets: setTicketsFn }}
     >
       {
         mobile === 'desktop' ? (

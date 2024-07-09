@@ -10,6 +10,7 @@ export interface ListT {
     title: string;
     text: string;
     id: number;
+    points_amount: number;
     task_name: string;
     description: string;
     task_type: string;
@@ -43,9 +44,11 @@ export const DailyTasks:FC<DailyTasksProps> = ({variant, list}) => {
     }, [taskRes])
 
     const claimHandler = (link:string, id:number) => {
-        token && closeTaskFn(id)
         window.open(link,'_blank', 'rel=noopener noreferrer')
+        token && closeTaskFn(id)
     }
+
+    console.log('LIST IS ', list)
 
 
     return (
@@ -64,7 +67,7 @@ export const DailyTasks:FC<DailyTasksProps> = ({variant, list}) => {
                                 </div>
                                 <div className={s.tasksListItemTextGroup}>
                                     <span className={s.tasksListItemTitle}>{item.title}</span>
-                                    <span className={s.tasksListItemText}>{item.description}</span>
+                                    <span className={s.tasksListItemText}><span>{item.points_amount}</span> points for task</span>
                                 </div>
                             </div>
                             <div onClick={() => {

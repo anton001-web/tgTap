@@ -10,6 +10,7 @@ interface TokenContextType {
     profile: {} | any
     referals: {} | any
     tokensBalance: any
+    refCode: string
     setBalance: (addPoints: number, isIncrement: boolean) => void
     setTickets: (ticket: number) => void
     setTasks: (id: number, taskResponse: any) => void
