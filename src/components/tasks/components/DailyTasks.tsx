@@ -48,7 +48,7 @@ export const DailyTasks:FC<DailyTasksProps> = ({variant, list}) => {
         token && closeTaskFn(id)
     }
 
-    console.log('LIST IS ', list)
+    console.log('LIST ISasd asdasdasd asd asdas das ', list)
 
 
     return (
