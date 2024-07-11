@@ -21,6 +21,7 @@ import { MinesInfoModal } from './components/home/components/minesPlayBlock/Mine
 // import { DesktopMobile } from './components/DesktopMobile/DesktopMobile';
 
 
+
 function App() {
   const [modalVisibility, setModalVisibility] = useState(false)
   const loc = useLocation()
