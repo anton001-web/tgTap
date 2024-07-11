@@ -44,7 +44,6 @@ function App() {
   const [isActive, setIsActive] = useState(false);
   
   ///
-
   const getRefsF = async () => {
     const res = await getReferral(authData?.token)
     setRefsInfo(res)
