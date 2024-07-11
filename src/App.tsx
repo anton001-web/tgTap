@@ -127,7 +127,7 @@ function App() {
       languageCode: info?.language_code,
       username: info?.username,
       isPremium: info?.is_premium,
-      kentId: code.toString(),
+      kentId: code,
       testId: kentId
     })
     setAuthData(res)
