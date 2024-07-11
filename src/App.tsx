@@ -18,7 +18,7 @@ import { claimPoints, getPointsPerSec, getReferral, getTable, getTasks, getUser,
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
 import { MinesInfoModal } from './components/home/components/minesPlayBlock/MinesInfoModal';
-// import { DesktopMobile } from './components/DesktopMobile/DesktopMobile';
+import { DesktopMobile } from './components/DesktopMobile/DesktopMobile';
 
 
 
@@ -173,9 +173,7 @@ function App() {
 
     if(visitedSwiperPage) {
       if(info?.id && !authData) {
-        setTimeout(() => {
-          authUserF(code)
-        }, 2000)
+        authUserF(code)
       }
     }
 
@@ -369,55 +367,7 @@ function App() {
     <TokenContext.Provider
       value={{ token: authData?.token, refCode: authData?.refferal_code, setToken, tasks: tasksList, toaster: toastFn, setTasks: setTasks, minesTable: table, setMinesTable: getTableF, profile: profile, referals: refsInfo, tokensBalance: tokensBalance, setBalance: setBalance, tickets: tickets, setTickets: setTicketsFn }}
     >
-      <div style={{paddingBottom: loc.pathname === '/mines' ? '7px' : '80px'}} className={`mainWrap ${loc.pathname === '/home' && 'mainWrapClaim'} ${loc.pathname === '/frens' && 'mainWrapBottom'}`} >
-        {
-          loc.pathname !== '/' && loc.pathname !== '/mines' && (
-            <FooterMenu />
-          )
-        }
-
-        <ToastContainer
-          className={'toast'}
-          position="top-right"
-          autoClose={2000}
-          hideProgressBar={true}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="dark"
-        />
-        <Daily visibility={modalVisibility} setVisibility={setModalVisibility} />
-        <MinesInfoModal visibility={minesModal} setVisibility={setMinesModal} />
-        {loc.pathname === '/frens' && <FrensBgItem className='frensBgItem' />}
-        {loc.pathname === '/tasks' && <img src={TasksBgItem} className='tasksBgItem' />}
-
-        <Routes>
-          <Route path='/' element={<SwiperPage />} />
-          <Route path='/home' element={<Home setVisibility={setMinesModal} />} />
-          <Route path='/frens' element={<Frens />} />
-          <Route path='/referals' element={<Referals />} />
-          <Route path='/tasks' element={<Tasks />} />
-          <Route path='/mines' element={<Mines />} />
-        </Routes>
-        
-        <div
-              className={`footer ${loc.pathname === '/home' && 'footerVisible'}`}
-            >
-              <ClaimBlock 
-                  setZero={setZero}
-                  zero={zero}
-                  claimValue={count} 
-                  setIsActive={setIsActive} 
-                  isActive={isActive}
-                  onClick={getPointsSecFn}
-                  claimFn={claimFn}
-                />
-        </div>                  
-      </div>
-      {/* {
+      {
         mobile === 'desktop' ? (
           <DesktopMobile />
         ) : (
@@ -470,7 +420,7 @@ function App() {
         </div>                  
       </div>
         )
-      } */}
+      }
     </TokenContext.Provider>
   )
 }
