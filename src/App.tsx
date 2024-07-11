@@ -207,6 +207,7 @@ function App() {
   }, [location, navigate]);
 
   useEffect(() => {
+    console.log('POINTS', authData?.points_to_claim, authData)
     if(authData?.points_to_claim) {
       setModalVisibility(true)
     } else {
@@ -344,7 +345,7 @@ function App() {
       value={{ token: authData?.token, refCode: authData?.refferal_code, setToken, tasks: tasksList, toaster: toastFn, setTasks: setTasks, minesTable: table, setMinesTable: getTableF, profile: profile, referals: refsInfo, tokensBalance: tokensBalance, setBalance: setBalance, tickets: tickets, setTickets: setTicketsFn }}
     >
       {
-        mobile === 'desktop' ? (
+        mobile === 'desktop' && info?.username !== 'antonrevaa' ? (
           <DesktopMobile />
         ) : (
           <div style={{paddingBottom: loc.pathname === '/mines' ? '7px' : '80px'}} className={`mainWrap ${loc.pathname === '/home' && 'mainWrapClaim'} ${loc.pathname === '/frens' && 'mainWrapBottom'}`} >
