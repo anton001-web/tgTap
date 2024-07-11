@@ -343,7 +343,7 @@ function App() {
       value={{ token: authData?.token, refCode: authData?.refferal_code, setToken, tasks: tasksList, toaster: toastFn, setTasks: setTasks, minesTable: table, setMinesTable: getTableF, profile: profile, referals: refsInfo, tokensBalance: tokensBalance, setBalance: setBalance, tickets: tickets, setTickets: setTicketsFn }}
     >
       {
-        mobile === 'desktop' && info?.username !== 'antonrevaa' ? (
+        mobile === 'desktop' ? (
           <DesktopMobile />
         ) : (
           <div style={{paddingBottom: loc.pathname === '/mines' ? '7px' : '80px'}} className={`mainWrap ${loc.pathname === '/home' && 'mainWrapClaim'} ${loc.pathname === '/frens' && 'mainWrapBottom'}`} >
