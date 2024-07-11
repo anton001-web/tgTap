@@ -39,6 +39,7 @@ function App() {
 
   console.log(mobile)
 
+  
   ///
   const [secValue, setSecValue] = useState<any>()
   const [count, setCount] = useState(0);
