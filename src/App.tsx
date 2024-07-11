@@ -37,6 +37,7 @@ function App() {
   const [mobile, setMobile] = useState('')
   // const [mainedValue, setMainedValue] = useState<number>()
 
+  
   ///
   const [secValue, setSecValue] = useState<any>()
   const [count, setCount] = useState(0);
