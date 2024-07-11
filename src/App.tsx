@@ -175,7 +175,7 @@ function App() {
       }
     }
 
-  }, [info, loc])
+  }, [info, loc, kentId])
 
   useEffect(() => {
 
