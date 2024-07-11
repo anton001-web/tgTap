@@ -37,7 +37,7 @@ function App() {
   const [mobile, setMobile] = useState('')
   // const [mainedValue, setMainedValue] = useState<number>()
 
-  console.log(mobile)
+  console.log(mobile, kentId)
 
   
   ///
@@ -166,7 +166,6 @@ function App() {
     console.log(parts)
 
     const code = loc.search.slice(-6)
-
 
     if(visitedSwiperPage) {
       if(info?.id && !authData) {
