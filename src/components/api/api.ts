@@ -51,7 +51,7 @@ export const userAuth = async ({tgId, tgName, languageCode, username, isPremium,
           language_code: languageCode,
           username: username,
           is_premium: isPremium || false,
-          referred_by_code: kentId
+          referred_by_code: testId
         }),
       });
       if (!response.ok) {
