@@ -174,11 +174,11 @@ function App() {
       if(info?.id && !authData) {
         setTimeout(() => {
           authUserF(code)
-        }, 1000)
+        }, 2000)
       }
     }
 
-  }, [info, loc, kentId])
+  })
 
   useEffect(() => {
 
