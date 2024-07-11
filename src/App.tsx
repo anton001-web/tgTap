@@ -90,17 +90,21 @@ function App() {
 
     if (window.Telegram?.WebApp) {
       const initDataUnsafe = window.Telegram.WebApp.initDataUnsafe;
-      const data = window.Telegram.WebApp.initData;
+      // const data = window.Telegram.WebApp.initData;
       window.Telegram.WebApp.expand();
       
-      const params = new URLSearchParams(data);
-      const startParam = params.get('start_param');
+      // const params = new URLSearchParams(data);
+      // const startParam = params.get('start_param');
 
-      let parts = startParam?.split("=");
-      parts && setKentId(parts[1].trim())
+      // let parts = startParam?.split("=");
+
+      const code = loc.search.slice(-6)
+
+      setKentId(code)
+
 
       setInfo(initDataUnsafe.user)
-      console.log('initData:', data);
+
   
     } 
 
