@@ -156,7 +156,7 @@ function App() {
 
   useEffect(() => {
     const visitedSwiperPage = localStorage.getItem('visitedSwiperPage');
-    const initDataUnsafe = window.Telegram.WebApp.initDataUnsafe;
+    // const initDataUnsafe = window.Telegram.WebApp.initDataUnsafe;
     const data = window.Telegram.WebApp.initData;
     window.Telegram.WebApp.expand();
       
