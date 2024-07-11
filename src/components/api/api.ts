@@ -6,7 +6,8 @@ interface AuthT  {
     languageCode: any,
     username: any,
     isPremium: any,
-    kentId: string | undefined | null,
+    kentId: any
+    testId: any
 }   
 
 export const getUser = async (authToken:string) => {
@@ -32,9 +33,9 @@ export const getUser = async (authToken:string) => {
       }
 }
 
-export const userAuth = async ({tgId, tgName, languageCode, username, isPremium, kentId}:AuthT) => {
+export const userAuth = async ({tgId, tgName, languageCode, username, isPremium, kentId, testId}:AuthT) => {
 
-    console.log('AUTHFUNCTION', tgId, tgName, languageCode, username, isPremium, kentId)
+    console.log('AUTHFUNCTION', tgId, tgName, languageCode, username, isPremium, kentId, testId, testId.toString)
 
     try {
       const response = await fetch(`${BASE_API_URL}/auth/authenticate`, {

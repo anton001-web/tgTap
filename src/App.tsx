@@ -126,6 +126,7 @@ function App() {
       username: info?.username,
       isPremium: info?.is_premium,
       kentId: code.toString(),
+      testId: kentId
     })
     setAuthData(res)
   }
