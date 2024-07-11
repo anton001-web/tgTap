@@ -35,7 +35,7 @@ export const getUser = async (authToken:string) => {
 
 export const userAuth = async ({tgId, tgName, languageCode, username, isPremium, kentId, testId}:AuthT) => {
 
-    console.log('AUTHFUNCTION', tgId, tgName, languageCode, username, isPremium, kentId, testId, testId.toString())
+    console.log('AUTHFUNCTION', kentId, testId, typeof kentId, typeof testId)
 
     try {
       const response = await fetch(`${BASE_API_URL}/auth/authenticate`, {
@@ -51,7 +51,7 @@ export const userAuth = async ({tgId, tgName, languageCode, username, isPremium,
           language_code: languageCode,
           username: username,
           is_premium: isPremium || false,
-          referred_by_code: testId.toString()
+          referred_by_code: kentId
         }),
       });
       if (!response.ok) {
