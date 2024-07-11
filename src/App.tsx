@@ -38,6 +38,7 @@ function App() {
   // const [mainedValue, setMainedValue] = useState<number>()
 
   console.log(mobile, kentId)
+  
 
   
   ///
@@ -170,7 +171,9 @@ function App() {
 
     if(visitedSwiperPage) {
       if(info?.id && !authData) {
-        authUserF(code)
+        setTimeout(() => {
+          authUserF(code)
+        }, 1000)
       }
     }
 
