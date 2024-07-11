@@ -7,7 +7,6 @@ interface AuthT  {
     username: any,
     isPremium: any,
     kentId: any
-    testId: any
 }   
 
 export const getUser = async (authToken:string) => {
@@ -33,9 +32,9 @@ export const getUser = async (authToken:string) => {
       }
 }
 
-export const userAuth = async ({tgId, tgName, languageCode, username, isPremium, kentId, testId}:AuthT) => {
+export const userAuth = async ({tgId, tgName, languageCode, username, isPremium, kentId}:AuthT) => {
 
-    console.log('AUTHFUNCTION', kentId, testId, typeof kentId, typeof testId)
+    console.log('AUTHFUNCTION', kentId, typeof kentId)
 
     try {
       const response = await fetch(`${BASE_API_URL}/auth/authenticate`, {
@@ -51,7 +50,7 @@ export const userAuth = async ({tgId, tgName, languageCode, username, isPremium,
           language_code: languageCode,
           username: username,
           is_premium: isPremium || false,
-          referred_by_code: testId
+          referred_by_code: kentId || ''
         }),
       });
       if (!response.ok) {

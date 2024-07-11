@@ -97,37 +97,25 @@ function App() {
       const initDataUnsafe = window.Telegram.WebApp.initDataUnsafe;
       const data = window.Telegram.WebApp.initData;
       window.Telegram.WebApp.expand();
-      
-      const params = new URLSearchParams(data);
-      const startParam = params.get('start_param');
 
-      let parts = startParam?.split("=");
-
-
-
-      const code = loc.search.slice(-6)
-
-      setKentId(code)
-
-      console.log('LOCATION', loc, params, startParam, parts, code)
+      setKentId(initDataUnsafe.start_param)
 
       setInfo(initDataUnsafe.user)
-
+      console.log('initData:', data);
   
     } 
 
   }, []);
 
 
-  const authUserF = async (code:string) => {
+  const authUserF = async () => {
     const res = await userAuth({
       tgId: info?.id,
       tgName: info?.first_name,
       languageCode: info?.language_code,
       username: info?.username,
       isPremium: info?.is_premium,
-      kentId: code,
-      testId: kentId
+      kentId: kentId?.toString()
     })
     setAuthData(res)
   }
@@ -157,25 +145,14 @@ function App() {
 
   useEffect(() => {
     const visitedSwiperPage = localStorage.getItem('visitedSwiperPage');
-    // const initDataUnsafe = window.Telegram.WebApp.initDataUnsafe;
-    const data = window.Telegram.WebApp.initData;
-    window.Telegram.WebApp.expand();
-      
-    const params = new URLSearchParams(data);
-    const startParam = params.get('start_param');
-    let parts = startParam?.split("=");
-
-    console.log(parts)
-
-    const code = loc.search.slice(-6)
 
     if(visitedSwiperPage) {
       if(info?.id && !authData) {
-        authUserF(code)
+        authUserF()
       }
     }
 
-  })
+  }, [info, loc, kentId])
 
   useEffect(() => {
 
