@@ -20,6 +20,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { MinesInfoModal } from './components/home/components/minesPlayBlock/MinesInfoModal';
 import { DesktopMobile } from './components/DesktopMobile/DesktopMobile';
 
+
 function App() {
   const [modalVisibility, setModalVisibility] = useState(false)
   const loc = useLocation()
