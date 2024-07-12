@@ -20,7 +20,7 @@ export const MinesInfoModal:FC<MinesInfoModalProps> = ({setVisibility, visibilit
         <div className={`${s.modalOverlay} ${visibility && s.modalActive}`} onClick={handleOverlayClick} >
             <div className={s.modalBody} onClick={handleBodyClick} >
                 <p className={s.modalText}>
-                    In Mines, there are 9 squares with 6 tokens and 3 bombs hidden.
+                    In Mines, there are 9 squares with 8 tokens and 1 bombs hidden.
                 </p>
                 <p className={s.modalText}>
                     If you land on a bomb on the field, you immediately lose; finding a token earns you 10 tokens.

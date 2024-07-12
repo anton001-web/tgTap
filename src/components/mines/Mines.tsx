@@ -106,7 +106,7 @@ export const Mines:FC<MinesProps> = () => {
                     <div className={s.minesHeaderGroup}>
                         <span className={s.minesHeaderTitle}>chips</span>
                         <img className={s.minesHeaderToken} src={minesCoin} />
-                        <span className={s.minesHeaderValue}>6</span>
+                        <span className={s.minesHeaderValue}>8</span>
                     </div>
                     <div className={s.minesHeaderRewardBlock}>
                         <span className={s.rewardTitle}>Reward</span>
@@ -118,7 +118,7 @@ export const Mines:FC<MinesProps> = () => {
                     <div className={s.minesHeaderGroup}>
                         <span className={s.minesHeaderTitle}>mines</span>
                         <img className={s.minesHeaderToken} src={minesBomb} />
-                        <span className={s.minesHeaderValue}>3</span>
+                        <span className={s.minesHeaderValue}>1</span>
                     </div>
                 </div>
             </div>
