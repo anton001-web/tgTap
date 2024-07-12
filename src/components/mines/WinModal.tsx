@@ -5,7 +5,7 @@ import modalCoin from '../../assets/images/modalCoin.webp'
 import modalCoin2 from '../../assets/images/modalCoin2.webp'
 import Mines from '../../assets/images/minesIco.svg?react'
 import minesIco from '../../assets/images/minesIco.webp'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import tokenWhite from '../../assets/images/tokenWhite.webp'
 import { TokenContext } from '../../providers/Auth'
 import closeIco from '../../assets/images/closeIco.png'
@@ -19,11 +19,16 @@ interface WinModalProps {
 
 export const WinModal:FC<WinModalProps> = ({winValue, visibility, setVisibility, reset}) => {
     const {setMinesTable, tickets}:any = useContext(TokenContext)
+    const navigate = useNavigate()
 
     const playMoreHandler = async () => {
-        await setMinesTable()
-        reset() 
-        setVisibility(false)
+        if(tickets === 0 ) {
+            navigate('/home')
+        } else {
+            await setMinesTable()
+            reset() 
+            setVisibility(false)
+        }
     }
 
     return (
