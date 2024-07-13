@@ -89,3 +89,37 @@
     right: 40px;
 
 }
+
+.footer {
+    z-index: 10;
+    border-radius: 8px;
+    padding: 15px;
+    box-sizing: border-box;
+    border: 2px dashed #c0392b;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+    margin-bottom: 30px;
+}
+
+.footerGroup {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+}
+
+.footerTitle {
+    -webkit-text-stroke: 0.5px #000;
+    font-size: 18px;
+    color: #fff;
+    font-family: "SFPRO";
+}
+
+.footerSubtitle {
+    text-shadow: 1px 1px 3px #c0392b;
+    font-weight: 600;
+    font-size: 20px;
+    color: #fff;
+    font-family: "SFPRO";
+}

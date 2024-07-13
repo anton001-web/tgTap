@@ -7,6 +7,8 @@ import Cube from '../../../../assets/images/minesIco.svg?react'
 interface RoadProps {}
 
 export const Road:FC<RoadProps> = () => {
+
+
     return (
         <div className={s.roadmapWrap}>
             <div className={s.roadmapItem}>

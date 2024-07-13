@@ -1,4 +1,4 @@
-import {FC, useContext, useEffect} from 'react'
+import {FC, useContext} from 'react'
 import s from './styles.module.scss'
 import icoTest from '../../assets/images/refIcoTest.png'
 import Pike from '../../assets/images/refIco.svg?react'
@@ -31,10 +31,6 @@ interface ReferalsProps {}
 export const Referals:FC<ReferalsProps> = () => {
     const {referals}:any = useContext(TokenContext)
 
-    useEffect(() => {
-        console.log('referals', referals)
-    }, [referals])
-
     return (
         <div className={s.referalWrap}>
             <div className={s.referalBlock}>
@@ -43,11 +39,7 @@ export const Referals:FC<ReferalsProps> = () => {
                 </Link>
                 <div className={s.referalTitleBlock}>
                     <Pike className={s.pike} />
-                    friends
-                </div>
-                <div className={s.referalBalance}>
-                    <img src={tokenWhite} />
-                    {referals?.total_referral_points | 0}
+                    Leaderboard
                 </div>
                 <div className={s.referalList}>
                     <div className={s.border}></div>

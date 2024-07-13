@@ -12,7 +12,9 @@ const USER_REF_URL = 'https://t.me/app_tap_cat_bot/AppTapCatBot?startapp='
 interface FrensProps {}
 
 export const Frens:FC<FrensProps> = () => {
-    const {refCode, toaster}:any = useContext(TokenContext)
+    const {refCode, toaster, referals}:any = useContext(TokenContext)
+
+    console.log('LOL', referals)
 
     const [anim, setAnim] = useState<boolean>(false)
 
@@ -23,7 +25,24 @@ export const Frens:FC<FrensProps> = () => {
             setTimeout(() => {
                 setAnim(false)
             }, 2000)
-        navigator.clipboard.writeText(`${USER_REF_URL}${refCode}`)
+        try {
+            await navigator.clipboard.writeText(`${USER_REF_URL}${refCode}`)
+        } catch {
+            const input = document.createElement('input');
+            input.value = `${USER_REF_URL}${refCode}`;
+            document.body.appendChild(input);
+            input.select();
+            input.setSelectionRange(0, 99999); // Для мобильных устройств
+
+            try {
+                document.execCommand('copy');
+                alert('Текст скопирован в буфер обмена!');
+            } catch (err) {
+                console.error('Ошибка копирования текста: ', err);
+            }
+        
+            document.body.removeChild(input);
+        }
     }
 
     return (
@@ -31,6 +50,16 @@ export const Frens:FC<FrensProps> = () => {
              <FrensHeader />
              <Referals />
              <Road />
+             <div className={style.footer}>
+                <div className={style.footerGroup}>
+                    <span className={style.footerTitle}>Earned Points</span>
+                    <span className={style.footerSubtitle}>{referals?.total_referral_points}</span>
+                </div>
+                <div className={style.footerGroup}>
+                    <span className={style.footerTitle}>Total Referrals</span>
+                    <span className={style.footerSubtitle}>{referals?.total_referrals}</span>
+                </div>
+             </div>
             <div className={style.claimBLock} onClick={handler} >
                 <span className={`${style.claimTitle} ${anim && style.claimTitleAnim}`}>
                     Invite friends
