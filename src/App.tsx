@@ -35,6 +35,7 @@ function App() {
   const [tickets, setTickets] = useState<number>()
   const [minesModal, setMinesModal] = useState(false)
   const [mobile, setMobile] = useState('')
+
   // const [mainedValue, setMainedValue] = useState<number>()
 
   console.log(mobile, kentId)
@@ -306,8 +307,8 @@ function App() {
 
     let ans
 
-    if(taskResponse?.non_field_errors) {
-      ans = taskResponse?.non_field_errors[0]
+    if(taskResponse?.errorData?.non_field_errors) {
+      ans = taskResponse?.errorData?.non_field_errors[0]
     }
 
     if(ans === 'Task was completed before') {

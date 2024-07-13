@@ -89,6 +89,33 @@ export const getTable = async (authToken:string) => {
     }
 }
 
+
+
+// export const getTasksTest = async (authToken:string) => {
+
+//   try {
+//       const response = await fetch(`${BASE_API_URL}/tasks/available-tasks-tests`, {
+//         method: "GET",
+//         headers: {
+//           "Content-Type": "application/json",
+//           "Access-Control-Allow-Origin": "*",
+//           "Access-Control-Allow-Headers": "*",
+//           'Authorization': `Token ${authToken}`
+//         },
+//       });
+//       if (!response.ok) {
+//         const errorData = await response.json();
+//         return errorData
+//       } else {
+//         const responseData = await response.json();
+//         return responseData
+//       }
+//     } catch (error) {
+//       return error
+//     }
+// }
+
+
 export const getTasks = async (authToken:string) => {
 
   try {
@@ -225,13 +252,11 @@ export const closeTask = async (authToken:string, taskId: number) => {
           "Access-Control-Allow-Headers": "*",
           'Authorization': `Token ${authToken}`
         },
-        // body: JSON.stringify({
-        //   task_id : taskId,
-        // }),
       });
       if (!response.ok) {
         const errorData = await response.json();
-        return errorData
+        const status = response.status
+        return {errorData, status}
       } else {
         const responseData = await response.json();
         return responseData
