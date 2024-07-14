@@ -53,11 +53,11 @@ export const Frens:FC<FrensProps> = () => {
              <div className={style.footer}>
                 <div className={style.footerGroup}>
                     <span className={style.footerTitle}>Earned Points</span>
-                    <span className={style.footerSubtitle}>{referals?.total_referral_points}</span>
+                    <span className={style.footerSubtitle}>{referals?.total_referral_points || 0}</span>
                 </div>
                 <div className={style.footerGroup}>
                     <span className={style.footerTitle}>Total Referrals</span>
-                    <span className={style.footerSubtitle}>{referals?.total_referrals}</span>
+                    <span className={style.footerSubtitle}>{referals?.total_referrals || 0}</span>
                 </div>
              </div>
             <div className={style.claimBLock} onClick={handler} >
