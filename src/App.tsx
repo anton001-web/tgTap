@@ -40,7 +40,6 @@ function App() {
 
   console.log(mobile, kentId)
   
-
   
   ///
   const [secValue, setSecValue] = useState<any>()
