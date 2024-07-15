@@ -38,6 +38,7 @@ function App() {
   const [minesModal, setMinesModal] = useState(false)
   const [mobile, setMobile] = useState('')
 
+  
   // const [mainedValue, setMainedValue] = useState<number>()
 
   console.log(mobile, kentId)
