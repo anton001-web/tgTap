@@ -80,8 +80,10 @@ function App() {
 
     const containsMobile = /Mobile\//i.test(userAgent)
     const containsMobileTwo = /Mobile/i.test(userAgent)
+    const containsMobileThree = /Android/i.test(userAgent)
+    const lastMatch = navigator.userAgent.match(/Mobile|Windows Phone|Lumia|android 3.0|xoom|sch-i800|playbook|tablet|Android|android|webOS|iPhone|iPod|Blackberry|PlayBook|BB10|Opera Mini|\bCrMo\/|Opera Mobi/i)
 
-    if(containsMobile || containsMobileTwo) {
+    if(containsMobile || containsMobileTwo || containsMobileThree || lastMatch) {
       setMobile('mobile')
       // alert('IS MOBILE')
     } else {
@@ -333,20 +335,66 @@ function App() {
     setTable(res.playing_board)
   }
 
-  const setToken = () => {
-    
-  }
 
   return (
 
     <TokenContext.Provider
-      value={{ token: authData?.token, refCode: authData?.refferal_code, setToken, tasks: tasksList, toaster: toastFn, setTasks: setTasks, minesTable: table, setMinesTable: getTableF, profile: profile, referals: refsInfo, tokensBalance: tokensBalance, setBalance: setBalance, tickets: tickets, setTickets: setTicketsFn }}
+      value={{ token: authData?.token, refCode: authData?.refferal_code, pointsClaim: authData?.total_to_claim_available, tasks: tasksList, toaster: toastFn, setTasks: setTasks, minesTable: table, setMinesTable: getTableF, profile: profile, referals: refsInfo, tokensBalance: tokensBalance, setBalance: setBalance, tickets: tickets, setTickets: setTicketsFn }}
     >
       {
         mobile === 'desktop' ? (
           <DesktopMobile />
+      //     <div style={{paddingBottom: loc.pathname === '/mines' ? '7px' : '80px'}} className={`mainWrap ${loc.pathname === '/home' && 'mainWrapClaim'} ${loc.pathname === '/frens' && 'mainWrapBottom'}`} >
+      //   {
+      //     loc.pathname !== '/' && loc.pathname !== '/mines' && (
+      //       <FooterMenu />
+      //     )
+      //   }
+
+      //   <ToastContainer
+      //     className={'toast'}
+      //     position="top-right"
+      //     autoClose={2000}
+      //     hideProgressBar={true}
+      //     newestOnTop={false}
+      //     closeOnClick
+      //     rtl={false}
+      //     pauseOnFocusLoss
+      //     draggable
+      //     pauseOnHover
+      //     theme="dark"
+      //   />
+      //   <Daily visibility={true} setVisibility={setModalVisibility} />
+      //   <MinesInfoModal visibility={minesModal} setVisibility={setMinesModal} />
+      //   {loc.pathname === '/frens' && <FrensBgItem className='frensBgItem' />}
+      //   {loc.pathname === '/tasks' && <img src={TasksBgItem} className='tasksBgItem' />}
+
+      //   <Routes>
+      //     <Route path='/' element={<SwiperPage />} />
+      //     <Route path='/home' element={<Home setVisibility={setMinesModal} />} />
+      //     <Route path='/frens' element={<Frens />} />
+      //     <Route path='/referals' element={<Referals />} />
+      //     <Route path='/tasks' element={<Tasks />} />
+      //     <Route path='/mines' element={<Mines />} />
+      //   </Routes>
+        
+      //   <div
+      //         className={`footer ${loc.pathname === '/home' && 'footerVisible'}`}
+      //       >
+      //         <ClaimBlock 
+      //             setZero={setZero}
+      //             zero={zero}
+      //             claimValue={count} 
+      //             setIsActive={setIsActive} 
+      //             isActive={isActive}
+      //             onClick={getPointsSecFn}
+      //             claimFn={claimFn}
+      //           />
+      //   </div>                  
+      // </div>
         ) : (
           <div style={{paddingBottom: loc.pathname === '/mines' ? '7px' : '80px'}} className={`mainWrap ${loc.pathname === '/home' && 'mainWrapClaim'} ${loc.pathname === '/frens' && 'mainWrapBottom'}`} >
+            {/* <span style={{color: 'white'}}>{navigator.userAgent}</span> */}
         {
           loc.pathname !== '/' && loc.pathname !== '/mines' && (
             <FooterMenu />

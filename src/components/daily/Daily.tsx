@@ -1,8 +1,9 @@
-import {FC} from 'react'
+import {FC, useContext} from 'react'
 import s from './styles.module.scss'
 import cat from '../../assets/images/dailyCat.webp'
 import TokenIco from "../../assets/images/tokenIco.svg?react"
 import footerBg from '../../assets/images/dailyFooterImg.webp'
+import { TokenContext } from '../../providers/Auth'
 
 interface DailyProps {
     visibility: boolean,
@@ -10,7 +11,7 @@ interface DailyProps {
 }
 
 export const Daily:FC<DailyProps> = ({visibility, setVisibility}) => {
-    
+    const {pointsClaim}:any = useContext(TokenContext)
 
     const handler = () => {
         setVisibility(false)
@@ -33,7 +34,7 @@ export const Daily:FC<DailyProps> = ({visibility, setVisibility}) => {
                 <div className={s.dailyPrize}>
                     <div className={s.dailyCoins}>
                         <span className={s.dailyPrizeTitle}>
-                            50
+                            {pointsClaim}
                         </span>
                         <TokenIco className={s.tokenIco} />
                     </div>
