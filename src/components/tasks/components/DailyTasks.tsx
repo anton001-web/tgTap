@@ -4,6 +4,7 @@ import BowlBall from '../../../assets/images/bowl.svg?react'
 import { TokenContext } from '../../../providers/Auth';
 import { closeTask } from '../../api/api';
 import { Spinner } from './Spinner';
+import { CheckImg } from './CheckImg';
 
 const IMG_URL = 'https://cat-backend.pro'
 
@@ -31,6 +32,11 @@ export const DailyTasks:FC<DailyTasksProps> = ({variant, list}) => {
     const {token, setTasks, setBalance, toaster}:any = useContext(TokenContext)
     const [taskRes, setTaskRes] = useState<any>() 
     const [loading, setLoading] = useState<{loading: boolean, taskId: number} | null>(null)
+    const [innerList, setInnerList] = useState<ListT[]>()
+
+    useEffect(() => {
+        setInnerList(list?.filter(item => item.is_completed_task !== true))
+    }, [list])
 
     const closeTaskFn = async (id:number) => {
         const res = await closeTask(token, id)
@@ -67,9 +73,37 @@ export const DailyTasks:FC<DailyTasksProps> = ({variant, list}) => {
         }
     }
 
+    function checkImage(url:any, callback:any) {
+        const img = new Image();
+    
+        img.onload = () => {
+            // Изображение успешно загружено
+            callback(true);
+        };
+    
+        img.onerror = () => {
+            // Ошибка при загрузке изображения
+            callback(false);
+        };
+    
+        img.src = url;
+    }
+    
+
     useEffect(() => {
-        console.log('STATE', loading)
-    }, [loading])
+        const imageUrl = 'https://cat-backend.pro/media/tasks/Group_132_1kWluBM.png';
+
+        checkImage(imageUrl, (isLoaded:any) => {
+            if (isLoaded) {
+                // console.log('Image loaded successfully.');
+                return 'success'
+            } else {
+                // console.log('Failed to load image.');
+                return 'fail'
+            }
+            
+        });
+    }, [])
 
     return (
         <div className={`${s.tasksBlock} ${variant === 'red' ? s.tasksBlockRed : s.tasksBlockGreen}`}>
@@ -79,11 +113,11 @@ export const DailyTasks:FC<DailyTasksProps> = ({variant, list}) => {
             </span>
             <div className={s.tasksList}>
                 {
-                    list && list.map((item, ind) => (
+                    innerList && innerList.map((item, ind) => (
                         <div key={ind} className={s.tasksListItem} >
                             <div className={s.tasksListItemGroup}>
                                 <div className={s.pawBlock}>
-                                    <img src={`${IMG_URL}${item.icon}`} />
+                                    <CheckImg imageUrl={`${IMG_URL}${item.icon}`} />
                                 </div>
                                 <div className={s.tasksListItemTextGroup}>
                                     <span className={s.tasksListItemTitle}>{item.title}</span>

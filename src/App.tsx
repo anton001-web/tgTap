@@ -19,6 +19,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
 import { MinesInfoModal } from './components/home/components/minesPlayBlock/MinesInfoModal';
 import { DesktopMobile } from './components/DesktopMobile/DesktopMobile';
+import { Slots } from './components/slots/Slots';
 
 
 function App() {
@@ -336,7 +337,6 @@ function App() {
     setTable(res.playing_board)
   }
 
-
   return (
 
     <TokenContext.Provider
@@ -345,59 +345,10 @@ function App() {
       {
         mobile === 'desktop' ? (
           <DesktopMobile />
-      //     <div style={{paddingBottom: loc.pathname === '/mines' ? '7px' : '80px'}} className={`mainWrap ${loc.pathname === '/home' && 'mainWrapClaim'} ${loc.pathname === '/frens' && 'mainWrapBottom'}`} >
-      //   {
-      //     loc.pathname !== '/' && loc.pathname !== '/mines' && (
-      //       <FooterMenu />
-      //     )
-      //   }
-
-      //   <ToastContainer
-      //     className={'toast'}
-      //     position="top-right"
-      //     autoClose={2000}
-      //     hideProgressBar={true}
-      //     newestOnTop={false}
-      //     closeOnClick
-      //     rtl={false}
-      //     pauseOnFocusLoss
-      //     draggable
-      //     pauseOnHover
-      //     theme="dark"
-      //   />
-      //   <Daily visibility={true} setVisibility={setModalVisibility} />
-      //   <MinesInfoModal visibility={minesModal} setVisibility={setMinesModal} />
-      //   {loc.pathname === '/frens' && <FrensBgItem className='frensBgItem' />}
-      //   {loc.pathname === '/tasks' && <img src={TasksBgItem} className='tasksBgItem' />}
-
-      //   <Routes>
-      //     <Route path='/' element={<SwiperPage />} />
-      //     <Route path='/home' element={<Home setVisibility={setMinesModal} />} />
-      //     <Route path='/frens' element={<Frens />} />
-      //     <Route path='/referals' element={<Referals />} />
-      //     <Route path='/tasks' element={<Tasks />} />
-      //     <Route path='/mines' element={<Mines />} />
-      //   </Routes>
-        
-      //   <div
-      //         className={`footer ${loc.pathname === '/home' && 'footerVisible'}`}
-      //       >
-      //         <ClaimBlock 
-      //             setZero={setZero}
-      //             zero={zero}
-      //             claimValue={count} 
-      //             setIsActive={setIsActive} 
-      //             isActive={isActive}
-      //             onClick={getPointsSecFn}
-      //             claimFn={claimFn}
-      //           />
-      //   </div>                  
-      // </div>
         ) : (
-          <div style={{paddingBottom: loc.pathname === '/mines' ? '7px' : '80px'}} className={`mainWrap ${loc.pathname === '/home' && 'mainWrapClaim'} ${loc.pathname === '/frens' && 'mainWrapBottom'}`} >
-            {/* <span style={{color: 'white'}}>{navigator.userAgent}</span> */}
+          <div style={{paddingBottom: loc.pathname === '/mines' || loc.pathname === '/slots' ? '7px' : '80px'}} className={`mainWrap ${loc.pathname === '/home' && 'mainWrapClaim'} ${loc.pathname === '/frens' && 'mainWrapBottom'}`} >
         {
-          loc.pathname !== '/' && loc.pathname !== '/mines' && (
+          loc.pathname !== '/' && loc.pathname !== '/mines' && loc.pathname !== '/slots' && (
             <FooterMenu />
           )
         }
@@ -427,6 +378,7 @@ function App() {
           <Route path='/referals' element={<Referals />} />
           <Route path='/tasks' element={<Tasks />} />
           <Route path='/mines' element={<Mines />} />
+          <Route path='/slots' element={<Slots />} />
         </Routes>
         
         <div

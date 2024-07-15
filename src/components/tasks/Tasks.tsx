@@ -67,8 +67,8 @@ export const Tasks:FC<TasksProps> = () => {
                     <div className={s.availableBorder}></div>
                 </div> 
             </div>
-            <DailyTasks variant='red' list={dailyTasks} />
             <DailyTasks variant='green' list={basicTasks} />
+            <DailyTasks variant='red' list={dailyTasks} />
         </div>
     )
 }
