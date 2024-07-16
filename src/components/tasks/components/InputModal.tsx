@@ -49,8 +49,8 @@ export const InputModal:FC<InputModalProps> = ({visibility, setVisibility}) => {
         <div className={`${s.inputModalWrap} ${visibility && s.modalActive}`}>
             <div className={s.inputModalBody}>
                 <img className={s.cat} src={cat} />
-                <span className={s.inputModalTitle}>Enter your waller address</span>
-                <input value={inpValue} onChange={(e) => handleChange(e.target.value)} placeholder='Enter your $SOL address' type='text' className={s.input} />
+                <span className={s.inputModalTitle}>Enter your $SOL address</span>
+                <input value={inpValue} onChange={(e) => handleChange(e.target.value)} placeholder='$SOL address' type='text' className={s.input} />
                 {
                     lengthError && <span className={s.error}>Incorrect address</span>
                 }
