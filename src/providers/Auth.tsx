@@ -1,4 +1,4 @@
-import {createContext} from "react";
+import {createContext, Dispatch} from "react";
 
 interface TokenContextType {
     token: string | undefined;
@@ -15,6 +15,8 @@ interface TokenContextType {
     setTickets: (ticket: number) => void
     setTasks: (id: number, taskResponse: any) => void
     toaster: (title: string) => void;
+    inputTaskId: any
+    setInputTaskId: Dispatch<any>
 }
 
 export const TokenContext = createContext<TokenContextType | null>(null);

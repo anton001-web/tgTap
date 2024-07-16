@@ -1,4 +1,4 @@
-import {FC, useContext, useEffect, useState} from 'react'
+import {Dispatch, FC, SetStateAction, useContext, useEffect, useState} from 'react'
 import s from './styles.module.scss'
 import romb from '../../assets/images/tasksRomb.webp'
 import { DailyTasks, ListT } from './components/DailyTasks'
@@ -28,18 +28,29 @@ import { TokenContext } from '../../providers/Auth'
 //     },
 // ]
 
-interface TasksProps {}
+interface TasksProps {
+    setInputVisibility: Dispatch<SetStateAction<boolean>>
+}
 
-export const Tasks:FC<TasksProps> = () => {
+export const Tasks:FC<TasksProps> = ({setInputVisibility}) => {
     const {tasks}:any = useContext(TokenContext)
     const [dailyTasks, setDailyTasks] = useState<any>()
     const [basicTasks, setBasicTasks] = useState<any>()
 
     useEffect(() => {
         if(tasks) {
-            setBasicTasks(
-                tasks.filter((item:ListT) => item.task_type === 'basic')
-            )
+            const sortedArr = tasks.sort((a:any, b:any) => {
+                if (a.task_category === 'input' && b.task_category !== 'input') {
+                  return -1;
+                }
+                if (a.task_category !== 'input' && b.task_category === 'input') {
+                  return 1;
+                }
+                return 0;
+              });
+
+            setBasicTasks(sortedArr)
+
             setDailyTasks(
                 tasks.filter((item:ListT) => item.task_type === 'daily')
             )
@@ -50,7 +61,7 @@ export const Tasks:FC<TasksProps> = () => {
         <div className={s.tasksWrap}>
             <div className={s.tasksHeader}>
                 <div className={s.tasksTitleBlock}>
-                    <div className={s.tasksTitleWord}>t</div>
+                    <div onClick={() => setInputVisibility(true)} className={s.tasksTitleWord}>t</div>
                     <div className={s.tasksTitleWord}>a</div>
                     <div className={s.tasksTitleWord}>s</div>
                     <div className={s.tasksTitleWord}>k</div>
@@ -67,8 +78,8 @@ export const Tasks:FC<TasksProps> = () => {
                     <div className={s.availableBorder}></div>
                 </div> 
             </div>
-            <DailyTasks variant='green' list={basicTasks} />
-            <DailyTasks variant='red' list={dailyTasks} />
+            <DailyTasks setInput={setInputVisibility} variant='green' list={basicTasks} />
+            <DailyTasks setInput={setInputVisibility} variant='red' list={dailyTasks} />
         </div>
     )
 }

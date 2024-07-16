@@ -2,7 +2,7 @@
     padding: 10px;
     box-sizing: border-box;
     position: relative;
-    z-index: 10;
+    z-index: 9;
     padding-bottom: 95px;
 }
 
@@ -97,7 +97,7 @@
     border-left: 1px solid #DE0607;
     box-shadow: 0px 0px 10px 1px #DE0607;
     position: relative;
-    z-index: 22;
+    z-index: 9;
     width: 115%
 }
 
@@ -157,6 +157,7 @@
     font-size: 20px;
     font-family: "SFPRO";
     font-weight: 700;
+    max-width: 155px;
 }
 
 .tasksListItemText {
@@ -204,4 +205,100 @@
     .claimBtn {
         border-color: #207041;
     }
+}
+
+
+
+////
+
+.inputModalWrap {
+    background: #00000080;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all .3s;
+    transform: scaleY(0);
+    
+}
+
+.modalActive {
+    opacity: 100;
+    visibility: visible;
+    transform: scaleY(1);
+}
+
+.inputModalBody {
+    border-radius: 20px;
+    margin: 150px 20px 0 20px;
+    box-shadow: 0px 0px 10px 1px #DE0607;
+    width: calc(100% - 40px);
+    padding: 15px;
+    background: #1E1E1E;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.cat {
+    width: 90px;
+    height: 90px;
+}
+
+.inputModalTitle {
+    color: #fff;
+    font-size: 22px;
+    font-weight: 500;
+    font-family: "SFPRO";
+    text-align: center;
+    margin-top: 10px;
+}
+
+.input {
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid #5A5A5A;
+    color: #5A5A5A;
+    font-size: 15px;
+    font-weight: 400;
+    padding: 10px;
+    display: block !important;
+    visibility: visible;
+    opacity: 100;
+    background: inherit;
+    box-sizing: border-box;
+    margin-top: 20px;
+    background: #191919;
+    outline: none;
+}
+
+.inputBtn {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #290000;
+    font-size: 17px;
+    font-weight: 600;
+    margin-top: 20px;
+    background: #FF2424;
+    border-radius: 5px;
+    box-shadow: 1px 4px 4px 0px #0000008C;
+    font-family: "SFPRO";
+    border: none;
+}
+
+.error {
+    color: #FF2424;
+    margin-top: 10px;
+    font-size: 10px;
+    font-family: "SFPRO";
 }

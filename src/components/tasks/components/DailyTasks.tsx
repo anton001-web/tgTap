@@ -1,4 +1,4 @@
-import {FC, useContext, useEffect, useState} from 'react'
+import {Dispatch, FC, SetStateAction, useContext, useEffect, useState} from 'react'
 import s from '../styles.module.scss'
 import BowlBall from '../../../assets/images/bowl.svg?react'
 import { TokenContext } from '../../../providers/Auth';
@@ -20,16 +20,18 @@ export interface ListT {
     task_category: string;
     icon: string;
     is_completed_task: boolean
+    tempCompleted?: boolean
 }
 
 interface DailyTasksProps {
     variant: string;
-    list: ListT[] | undefined
+    list: ListT[] | undefined;
+    setInput: Dispatch<SetStateAction<boolean>>
 }
 
 
-export const DailyTasks:FC<DailyTasksProps> = ({variant, list}) => {
-    const {token, setTasks, setBalance, toaster}:any = useContext(TokenContext)
+export const DailyTasks:FC<DailyTasksProps> = ({variant, list, setInput}) => {
+    const {token, setTasks, setBalance, toaster, setInputTaskId}:any = useContext(TokenContext)
     const [taskRes, setTaskRes] = useState<any>() 
     const [loading, setLoading] = useState<{loading: boolean, taskId: number} | null>(null)
     const [innerList, setInnerList] = useState<ListT[]>()
@@ -67,6 +69,9 @@ export const DailyTasks:FC<DailyTasksProps> = ({variant, list}) => {
         if(category === 'link') {
             window.open(link,'_blank', 'rel=noopener noreferrer')
             token && closeTaskFn(id)
+        } else if (category === 'input') {
+            setInputTaskId(id)
+            setInput(true)
         } else {
             setLoading({loading: true, taskId: id})
             token && closeAchieveFn(id)
@@ -126,8 +131,8 @@ export const DailyTasks:FC<DailyTasksProps> = ({variant, list}) => {
                             </div>
                             <div onClick={() => {
                                 item.is_completed_task ? null : claimHandler(item.task_link, item.id, item.task_category)
-                            }} className={`${s.claimBtn} claimLal ${!item.is_completed_task && 'arrs'} ${item.is_completed_task && s.claimBtnDone}`}>
-                                { item.is_completed_task ? 'Done' : (
+                            }} className={`${s.claimBtn} claimLal ${!item.tempCompleted && 'arrs'} ${item.tempCompleted && s.claimBtnDone}`}>
+                                { item.tempCompleted ? 'Done' : (
                                     <>
                                         {
                                             loading?.loading && loading?.taskId === item.id ? (

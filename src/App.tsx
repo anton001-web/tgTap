@@ -20,6 +20,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { MinesInfoModal } from './components/home/components/minesPlayBlock/MinesInfoModal';
 import { DesktopMobile } from './components/DesktopMobile/DesktopMobile';
 import { Slots } from './components/slots/Slots';
+import { InputModal } from './components/tasks/components/InputModal';
 
 
 function App() {
@@ -37,6 +38,9 @@ function App() {
   const [tickets, setTickets] = useState<number>()
   const [minesModal, setMinesModal] = useState(false)
   const [mobile, setMobile] = useState('')
+  const [inputModal, setInputModal] = useState(false)
+
+  const [inputTaskId, setInputTaskId] = useState<any>()
 
   
   // const [mainedValue, setMainedValue] = useState<number>()
@@ -322,13 +326,15 @@ function App() {
     const newTasksList = tasksList.map((element:any) => {
       element.total_completed_tasks = element.total_completed_tasks + 1
       if (element.id === id) {
-        return { ...element, is_completed_task: true };
+        // return { ...element, is_completed_task: true };
+        return { ...element, tempCompleted: true };
       }
       return element;
     });
 
     setTimeout(() => {
       setTasksList(newTasksList)
+      setBalance(taskResponse.total_points, false)
     }, 3000)
   };
 
@@ -341,7 +347,7 @@ function App() {
   return (
 
     <TokenContext.Provider
-      value={{ token: authData?.token, refCode: authData?.refferal_code, pointsClaim: authData?.total_to_claim_available, tasks: tasksList, toaster: toastFn, setTasks: setTasks, minesTable: table, setMinesTable: getTableF, profile: profile, referals: refsInfo, tokensBalance: tokensBalance, setBalance: setBalance, tickets: tickets, setTickets: setTicketsFn }}
+      value={{ token: authData?.token, inputTaskId:inputTaskId, setInputTaskId: setInputTaskId, refCode: authData?.refferal_code, pointsClaim: authData?.total_to_claim_available, tasks: tasksList, toaster: toastFn, setTasks: setTasks, minesTable: table, setMinesTable: getTableF, profile: profile, referals: refsInfo, tokensBalance: tokensBalance, setBalance: setBalance, tickets: tickets, setTickets: setTicketsFn }}
     >
       {
         mobile === 'desktop' ? (
@@ -353,6 +359,8 @@ function App() {
             <FooterMenu />
           )
         }
+        
+        <InputModal visibility={inputModal} setVisibility={setInputModal} />
 
         <ToastContainer
           className={'toast'}
@@ -377,7 +385,7 @@ function App() {
           <Route path='/home' element={<Home setVisibility={setMinesModal} />} />
           <Route path='/frens' element={<Frens />} />
           <Route path='/referals' element={<Referals />} />
-          <Route path='/tasks' element={<Tasks />} />
+          <Route path='/tasks' element={<Tasks setInputVisibility={setInputModal} />} />
           <Route path='/mines' element={<Mines />} />
           <Route path='/slots' element={<Slots />} />
         </Routes>
