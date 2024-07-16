@@ -42,7 +42,6 @@ function App() {
 
   const [inputTaskId, setInputTaskId] = useState<any>()
 
-  
   // const [mainedValue, setMainedValue] = useState<number>()
 
   console.log(mobile, kentId)
