@@ -40,6 +40,10 @@ export const DailyTasks:FC<DailyTasksProps> = ({variant, list, setInput}) => {
         setInnerList(list?.filter(item => item.is_completed_task !== true))
     }, [list])
 
+    useEffect(() => {
+        console.log('LIST IS type---', variant, list )
+    }, [list])
+
     const closeTaskFn = async (id:number) => {
         const res = await closeTask(token, id)
         setTaskRes(res)

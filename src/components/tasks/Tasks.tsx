@@ -39,7 +39,8 @@ export const Tasks:FC<TasksProps> = ({setInputVisibility}) => {
 
     useEffect(() => {
         if(tasks) {
-            const sortedArr = tasks.sort((a:any, b:any) => {
+            const arrayFor1 = tasks.filter((item:ListT) => item.task_type === 'basic')
+            const sortedArr = arrayFor1.sort((a:any, b:any) => {
                 if (a.task_category === 'input' && b.task_category !== 'input') {
                   return -1;
                 }
