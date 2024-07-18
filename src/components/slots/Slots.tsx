@@ -8,7 +8,9 @@ import Coin10 from '../../assets/images/slotsCoin10.svg?react'
 import Coin20 from '../../assets/images/slotsCoin20.svg?react'
 import Coin50 from '../../assets/images/slotsCoin50.svg?react'
 import BackBtn from '../../assets/images/slotsBackBtn.svg?react'
+import slotsHeader from '../../assets/images/slotsHeader.png'
 
+import Mines from '../../assets/images/minesIco.svg?react'
 import { getSlots } from '../api/api'
 import { TokenContext } from '../../providers/Auth'
 import { useNavigate } from 'react-router-dom'
@@ -85,7 +87,7 @@ type SlotsAnswer = {
 interface SlotsProps {}
 
 export const Slots:FC<SlotsProps> = () => {
-    const {token}:any = useContext(TokenContext)
+    const {token, setBalance, setTickets, tickets, toaster}:any = useContext(TokenContext)
     const [inGame, setInGame] = useState<boolean>(false)
     const [firstArr, setFirstArr] = useState(shuffle(coinsArr))
     const [secondArr, setSecondArr] = useState(shuffle(coinsArr))
@@ -106,9 +108,15 @@ export const Slots:FC<SlotsProps> = () => {
         allElems.forEach(el => {
             el.classList.remove('animed')
         })
+
+        if(tickets === 0) {
+            toaster('No tickets :(')
+            return null
+        }
         
         token && getSlotsF()
         setInGame(true)
+        setTickets(1)
     }
 
     function findLastObjectByName(array:any[], id:number) {
@@ -133,7 +141,8 @@ export const Slots:FC<SlotsProps> = () => {
         if(slotsResponse && row && row2 && row3) {
 
             setTimeout(() => {
-                setWinValue(0)
+                setWinValue(slotsResponse.reward)
+                setBalance(slotsResponse.reward, true)
             }, 1200)
 
             const indexFirst = findLastObjectByName(firstArr, slotsResponse.slots_result[0])
@@ -205,6 +214,7 @@ export const Slots:FC<SlotsProps> = () => {
             <div className={s.SlotsBody}>
                 <h1 className={s.SlotsTitle}>CAT SLOTS</h1>
                 <div className={s.SlotsContainer}>
+                    <img src={slotsHeader} className={s.SlotsHeader} />
                     <div className={s.SlotsBlock}>
                         <SlotsArr className={s.SlotsLeftArr} />
                         <SlotsArrRight className={s.SlotsRightArr} />
@@ -254,13 +264,13 @@ export const Slots:FC<SlotsProps> = () => {
                 <div className={s.SlotsInfoWrap}>
                     <div className={s.SlotsInfoBlock}>
                         <div className={s.SlotsInfoBlockItem}>
-                            3x <Coin50 />  <span>= 50</span> <img src={tokenWhite} />
+                            3x <Coin50 />  <span>= 100</span> <img src={tokenWhite} />
                         </div>
                         <div className={s.SlotsInfoBlockItem}>
-                            3x <Coin20 />  = 20 <img src={tokenWhite} />
+                            3x <Coin20 />  = 200 <img src={tokenWhite} />
                         </div>
                         <div className={s.SlotsInfoBlockItem}>
-                            3x <Coin10 />  = 10 <img src={tokenWhite} />
+                            3x <Coin10 />  = 300 <img src={tokenWhite} />
                         </div>
                     </div>
                     <div className={s.SlotsRewardBlock}>
@@ -278,16 +288,15 @@ export const Slots:FC<SlotsProps> = () => {
                     <div onClick={() => navigate('/')} className={s.SlotsBackBtn}>
                         <BackBtn />    
                     </div>
-                    <button disabled={inGame} onClick={handlePlay} className={s.SlotsPlayBtn}>
-                        {
-                            !inGame ? 'Spin' : (
-                                <>
-                                    Spinning
-                                    <Spinner variant='black' />
-                                </>
-                            )
-                        }
-
+                    <button disabled={inGame} onClick={handlePlay} className={`${s.SlotsPlayBtn} ${inGame && s.activeInGame}`}>
+                        <div className={s.disableBlock}>
+                            <span>Spin</span>
+                            <Mines />
+                        </div>
+                        <div className={`${s.activeBlock}`}>
+                            <span>Spinning</span>
+                            <Spinner variant='black' />
+                        </div>
                     </button>
                 </div>
             </div>

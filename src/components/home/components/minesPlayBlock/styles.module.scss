@@ -7,6 +7,7 @@
     padding: 10px;
     box-sizing: border-box;
     position: relative;
+    overflow: hidden;
     border-radius: 18px;
 }
 
@@ -105,4 +106,24 @@
     font-family: "SFPRO";
     color: #fff;
     font-size: 16px;
+}
+
+.shadow1 {
+    position: absolute;
+    top: -50px;
+    left: 50px;
+    width: 100px;
+    height: 100px;
+    background: #FF0000;
+    filter: blur(40px);
+}
+
+.shadow2 {
+    position: absolute;
+    right: -50px;
+    bottom: -30px;
+    width: 100px;
+    height: 100px;
+    background: #FF0000;
+    filter: blur(35px);
 }

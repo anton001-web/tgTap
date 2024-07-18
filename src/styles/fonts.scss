@@ -11,3 +11,9 @@
   src: local('SFPRO'), url("../assets/fonts/SFPRODISPLAYMEDIUM.OTF") format('truetype');
   font-weight: 500;
 }
+
+@font-face {
+  font-family: 'LOVELACE';
+  src: local('LOVELACE'), url("../assets/fonts/Lovelace-ExtraBold.ttf") format('truetype');
+  font-weight: 800;
+}

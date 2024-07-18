@@ -350,58 +350,58 @@ function App() {
     >
       {
         mobile === 'desktop' ? (
-          <DesktopMobile />
-      //     <div style={{paddingBottom: loc.pathname === '/mines' || loc.pathname === '/slots' ? '7px' : '80px'}} className={`mainWrap ${loc.pathname === '/home' && 'mainWrapClaim'} ${loc.pathname === '/frens' && 'mainWrapBottom'}`} >
-      //   {
-      //     loc.pathname !== '/' && loc.pathname !== '/mines' && loc.pathname !== '/slots' && (
-      //       <FooterMenu />
-      //     )
-      //   }
+          // <DesktopMobile />
+          <div style={{paddingBottom: loc.pathname === '/mines' || loc.pathname === '/slots' ? '7px' : '80px'}} className={`mainWrap ${loc.pathname === '/home' && 'mainWrapClaim'} ${loc.pathname === '/frens' && 'mainWrapBottom'}`} >
+        {
+          loc.pathname !== '/' && loc.pathname !== '/mines' && loc.pathname !== '/slots' && (
+            <FooterMenu />
+          )
+        }
         
-      //   <InputModal visibility={inputModal} setVisibility={setInputModal} />
+        <InputModal visibility={inputModal} setVisibility={setInputModal} />
 
-      //   <ToastContainer
-      //     className={'toast'}
-      //     position="top-right"
-      //     autoClose={2000}
-      //     hideProgressBar={true}
-      //     newestOnTop={false}
-      //     closeOnClick
-      //     rtl={false}
-      //     pauseOnFocusLoss
-      //     draggable
-      //     pauseOnHover
-      //     theme="dark"
-      //   />
-      //   <Daily visibility={modalVisibility} setVisibility={setModalVisibility} />
-      //   <MinesInfoModal visibility={minesModal} setVisibility={setMinesModal} />
-      //   {loc.pathname === '/frens' && <FrensBgItem className='frensBgItem' />}
-      //   {loc.pathname === '/tasks' && <img src={TasksBgItem} className='tasksBgItem' />}
+        <ToastContainer
+          className={'toast'}
+          position="top-right"
+          autoClose={2000}
+          hideProgressBar={true}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+        />
+        <Daily visibility={modalVisibility} setVisibility={setModalVisibility} />
+        <MinesInfoModal visibility={minesModal} setVisibility={setMinesModal} />
+        {loc.pathname === '/frens' && <FrensBgItem className='frensBgItem' />}
+        {loc.pathname === '/tasks' && <img src={TasksBgItem} className='tasksBgItem' />}
 
-      //   <Routes>
-      //     <Route path='/' element={<SwiperPage />} />
-      //     <Route path='/home' element={<Home setVisibility={setMinesModal} />} />
-      //     <Route path='/frens' element={<Frens />} />
-      //     <Route path='/referals' element={<Referals />} />
-      //     <Route path='/tasks' element={<Tasks setInputVisibility={setInputModal} />} />
-      //     <Route path='/mines' element={<Mines />} />
-      //     <Route path='/slots' element={<Slots />} />
-      //   </Routes>
+        <Routes>
+          <Route path='/' element={<SwiperPage />} />
+          <Route path='/home' element={<Home setVisibility={setMinesModal} />} />
+          <Route path='/frens' element={<Frens />} />
+          <Route path='/referals' element={<Referals />} />
+          <Route path='/tasks' element={<Tasks setInputVisibility={setInputModal} />} />
+          <Route path='/mines' element={<Mines />} />
+          <Route path='/slots' element={<Slots />} />
+        </Routes>
         
-      //   <div
-      //         className={`footer ${loc.pathname === '/home' && 'footerVisible'}`}
-      //       >
-      //         <ClaimBlock 
-      //             setZero={setZero}
-      //             zero={zero}
-      //             claimValue={count} 
-      //             setIsActive={setIsActive} 
-      //             isActive={isActive}
-      //             onClick={getPointsSecFn}
-      //             claimFn={claimFn}
-      //           />
-      //   </div>                  
-      // </div>
+        <div
+              className={`footer ${loc.pathname === '/home' && 'footerVisible'}`}
+            >
+              <ClaimBlock 
+                  setZero={setZero}
+                  zero={zero}
+                  claimValue={count} 
+                  setIsActive={setIsActive} 
+                  isActive={isActive}
+                  onClick={getPointsSecFn}
+                  claimFn={claimFn}
+                />
+        </div>                  
+      </div>
         ) : (
           <div style={{paddingBottom: loc.pathname === '/mines' || loc.pathname === '/slots' ? '7px' : '80px'}} className={`mainWrap ${loc.pathname === '/home' && 'mainWrapClaim'} ${loc.pathname === '/frens' && 'mainWrapBottom'}`} >
         {

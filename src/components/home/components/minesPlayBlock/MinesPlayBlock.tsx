@@ -30,6 +30,8 @@ export const MinesPlayBlock:FC<MinesPlayBlockProps> = ({setVisibility}) => {
 
     return (
         <div className={styles.PlayBlock} onClick={navigateFn}>
+            <div className={styles.shadow1}></div>
+            <div className={styles.shadow2}></div>
             <div className={styles.Mines}>
                 <span className={styles.MinesTitle}>Mines</span>
                 <div className={styles.MinesGroup}>
