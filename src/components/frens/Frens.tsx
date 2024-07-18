@@ -6,6 +6,7 @@ import { Road } from './components/road/Road'
 import CopyIco from '../../assets/images/copyIco.svg?react'
 import { TokenContext } from '../../providers/Auth'
 import checkIco from '../../assets/images/checkIco.png'
+import * as clipboard from "clipboard-polyfill";
 
 const USER_REF_URL = 'https://t.me/app_tap_cat_bot/AppTapCatBot?startapp='
 
@@ -28,6 +29,7 @@ export const Frens:FC<FrensProps> = () => {
         try {
             await navigator.clipboard.writeText(`${USER_REF_URL}${refCode}`)
         } catch {
+            clipboard.writeText("This text is plain.")
             const input = document.createElement('input');
             input.value = `${USER_REF_URL}${refCode}`;
             document.body.appendChild(input);
@@ -35,6 +37,7 @@ export const Frens:FC<FrensProps> = () => {
             input.setSelectionRange(0, 99999); // Для мобильных устройств
 
             try {
+                clipboard.writeText("This text is plain.")
                 document.execCommand('copy');
                 alert('Текст скопирован в буфер обмена!');
             } catch (err) {

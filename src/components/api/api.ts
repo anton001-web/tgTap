@@ -265,3 +265,27 @@ export const closeTask = async (authToken:string, taskId: number) => {
       return error
     }
 }
+
+export const getSlots = async (authToken:string) => {
+
+  try {
+      const response = await fetch(`${BASE_API_URL}/games/slots-start`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Headers": "*",
+          'Authorization': `Token ${authToken}`
+        },
+      });
+      if (!response.ok) {
+        const errorData = await response.json();
+        return errorData
+      } else {
+        const responseData = await response.json();
+        return responseData
+      }
+    } catch (error) {
+      return error
+    }
+}

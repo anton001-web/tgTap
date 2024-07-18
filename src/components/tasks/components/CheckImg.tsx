@@ -30,6 +30,13 @@ function checkImage(url:string, callback:any) {
 
 export const CheckImg = ({imageUrl}:any) => {
     const [status, setStatus] = useState('');
+    const [randomImage, setRandomImage] = useState<{ src: string } | null>(null);
+
+    useEffect(() => {
+      if (!randomImage) {
+        setRandomImage(getRandomElement(noDataArr));
+      }
+    }, [randomImage]);
 
     useEffect(() => {
         checkImage(imageUrl, (isLoaded:any) => {
@@ -46,7 +53,7 @@ export const CheckImg = ({imageUrl}:any) => {
             {status === 'success' ? (
                 <img src={imageUrl} />
             ) : status === 'fail' ? (
-                <img src={getRandomElement(noDataArr).src} />
+                <img src={randomImage?.src} />
             ) : (
                 <p>Loading image...</p>
             )}

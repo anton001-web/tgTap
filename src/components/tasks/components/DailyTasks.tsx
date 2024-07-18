@@ -6,6 +6,21 @@ import { closeTask } from '../../api/api';
 import { Spinner } from './Spinner';
 import { CheckImg } from './CheckImg';
 
+// import img1 from '../../../assets/images/taskImg1.png'
+// import img2 from '../../../assets/images/taskImg2.png'
+// import img3 from '../../../assets/images/taskImg3.png'
+
+// function getRandomElement(array: { src: string; }[]) {
+//     const randomIndex = Math.floor(Math.random() * array.length);
+//     return array[randomIndex];
+// }
+
+// const noDataArr = [
+//     {src: img1},
+//     {src: img2},
+//     {src: img3},
+// ]
+
 const IMG_URL = 'https://cat-backend.pro'
 
 export interface ListT {

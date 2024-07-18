@@ -1,9 +1,11 @@
 import {FC} from 'react'
 
-interface SpinnerProps {}
+interface SpinnerProps {
+    variant?: string
+}
 
-export const Spinner:FC<SpinnerProps> = () => {
+export const Spinner:FC<SpinnerProps> = ({variant}) => {
     return (
-        <div className="loader"></div>
+        <div className={`loader ${variant === 'black' && 'loader-black'}`}></div>
     )
 }
