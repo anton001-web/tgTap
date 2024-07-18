@@ -18,51 +18,51 @@ import { Spinner } from '../tasks/components/Spinner'
 
 const coinsArr = [
     {
-        id: 300,
+        id: 45,
         icon: <Coin10 />,
     },
     {
-        id: 200,
+        id: 30,
         icon: <Coin20 />,
     },
     {
-        id: 100,
+        id: 15,
         icon: <Coin50 />,
     },
     {
-        id: 300,
+        id: 45,
         icon: <Coin10 />,
     },
     {
-        id: 200,
+        id: 30,
         icon: <Coin20 />,
     },
     {
-        id: 100,
+        id: 15,
         icon: <Coin50 />,
     },
     {
-        id: 300,
+        id: 45,
         icon: <Coin10 />,
     },
     {
-        id: 200,
+        id: 30,
         icon: <Coin20 />,
     },
     {
-        id: 100,
+        id: 15,
         icon: <Coin50 />,
     },
     {
-        id: 300,
+        id: 45,
         icon: <Coin10 />,
     },
     {
-        id: 200,
+        id: 30,
         icon: <Coin20 />,
     },
     {
-        id: 100,
+        id: 15,
         icon: <Coin50 />,
     },
 ]
@@ -264,13 +264,13 @@ export const Slots:FC<SlotsProps> = () => {
                 <div className={s.SlotsInfoWrap}>
                     <div className={s.SlotsInfoBlock}>
                         <div className={s.SlotsInfoBlockItem}>
-                            3x <Coin50 />  <span>= 100</span> <img src={tokenWhite} />
+                            3x <Coin50 />  <span>= 15</span> <img src={tokenWhite} />
                         </div>
                         <div className={s.SlotsInfoBlockItem}>
-                            3x <Coin20 />  = 200 <img src={tokenWhite} />
+                            3x <Coin20 />  = 30 <img src={tokenWhite} />
                         </div>
                         <div className={s.SlotsInfoBlockItem}>
-                            3x <Coin10 />  = 300 <img src={tokenWhite} />
+                            3x <Coin10 />  = 45 <img src={tokenWhite} />
                         </div>
                     </div>
                     <div className={s.SlotsRewardBlock}>

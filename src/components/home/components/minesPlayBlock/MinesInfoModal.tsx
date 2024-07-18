@@ -23,7 +23,7 @@ export const MinesInfoModal:FC<MinesInfoModalProps> = ({setVisibility, visibilit
                     In Mines, there are 9 squares with 8 tokens and 1 bombs hidden.
                 </p>
                 <p className={s.modalText}>
-                    If you land on a bomb on the field, you immediately lose; finding a token earns you 10 tokens.
+                    If you land on a bomb on the field, you immediately lose; finding a token earns you 5 tokens.
                 </p>
             </div>
         </div>

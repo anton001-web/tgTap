@@ -75,7 +75,7 @@ export const Mines:FC<MinesProps> = () => {
                 clickedItem?.classList.add(s.minesItemCoin)
             } else {
                 clickedItem?.classList.add(s.minesItemCoin)
-                setReward(reward + 10)
+                setReward(reward + 5)
             }
 
         } else {
