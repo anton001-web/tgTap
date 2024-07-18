@@ -62,7 +62,7 @@ export const Tasks:FC<TasksProps> = ({setInputVisibility}) => {
         <div className={s.tasksWrap}>
             <div className={s.tasksHeader}>
                 <div className={s.tasksTitleBlock}>
-                    <div onClick={() => setInputVisibility(true)} className={s.tasksTitleWord}>t</div>
+                    <div className={s.tasksTitleWord}>t</div>
                     <div className={s.tasksTitleWord}>a</div>
                     <div className={s.tasksTitleWord}>s</div>
                     <div className={s.tasksTitleWord}>k</div>

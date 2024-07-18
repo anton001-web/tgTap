@@ -22,7 +22,6 @@ import { DesktopMobile } from './components/DesktopMobile/DesktopMobile';
 import { Slots } from './components/slots/Slots';
 import { InputModal } from './components/tasks/components/InputModal';
 
-
 function App() {
   const [modalVisibility, setModalVisibility] = useState(false)
   const loc = useLocation()
