@@ -37,7 +37,7 @@ export const Mines:FC<MinesProps> = () => {
     }, [])
 
     const sendPointsF = async (isBombed:boolean) => {
-        const res = await sendPoints(token, (reward / 10), isBombed)
+        const res = await sendPoints(token, (reward / 5), isBombed)
         setBalance(res.total_reward, true)
         return res
     }

@@ -350,7 +350,6 @@ function App() {
       {
         mobile === 'desktop' ? (
           <DesktopMobile />
-          
         ) : (
           <div style={{paddingBottom: loc.pathname === '/mines' || loc.pathname === '/slots' ? '7px' : '80px'}} className={`mainWrap ${loc.pathname === '/home' && 'mainWrapClaim'} ${loc.pathname === '/frens' && 'mainWrapBottom'}`} >
         {
