@@ -195,7 +195,7 @@ function App() {
   }, [authData?.token])
 
   useEffect(() => {
-    if(loc.pathname === '/' || loc.pathname === '/mines') {
+    if(loc.pathname === '/') {
       document.body.style.overflowY = 'hidden'
       document.documentElement.style.overflowY = 'hidden'
     } else {
