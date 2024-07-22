@@ -87,8 +87,15 @@ function App() {
     const containsMobileTwo = /Mobile/i.test(userAgent)
     const containsMobileThree = /Android/i.test(userAgent)
     const lastMatch = navigator.userAgent.match(/Mobile|Windows Phone|Lumia|android 3.0|xoom|sch-i800|playbook|tablet|Android|android|webOS|iPhone|iPod|Blackberry|PlayBook|BB10|Opera Mini|\bCrMo\/|Opera Mobi/i)
+    
+    function isIpad() {
+      return /iPad|Macintosh/.test(navigator.userAgent) && 'ontouchend' in document;
+    }
 
-    if(containsMobile || containsMobileTwo || containsMobileThree || lastMatch) {
+    const ipad = isIpad()
+
+
+    if(containsMobile || containsMobileTwo || containsMobileThree || lastMatch || ipad) {
       setMobile('mobile')
       // alert('IS MOBILE')
     } else {
