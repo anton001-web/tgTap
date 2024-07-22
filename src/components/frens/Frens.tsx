@@ -29,7 +29,7 @@ export const Frens:FC<FrensProps> = () => {
         try {
             await navigator.clipboard.writeText(`${USER_REF_URL}${refCode}`)
         } catch {
-            clipboard.writeText("This text is plain.")
+            clipboard.writeText(`${USER_REF_URL}${refCode}`)
             const input = document.createElement('input');
             input.value = `${USER_REF_URL}${refCode}`;
             document.body.appendChild(input);
@@ -37,7 +37,7 @@ export const Frens:FC<FrensProps> = () => {
             input.setSelectionRange(0, 99999); // Для мобильных устройств
 
             try {
-                clipboard.writeText("This text is plain.")
+                clipboard.writeText(`${USER_REF_URL}${refCode}`)
                 document.execCommand('copy');
                 alert('Текст скопирован в буфер обмена!');
             } catch (err) {
